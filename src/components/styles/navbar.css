@@ -1,0 +1,70 @@
+.navbar-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 70px; /* 네비게이션 바가 나타나기 전의 인식 범위를 넓히기 위해 넓은 감지 영역을 설정 */
+  z-index: 10;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: -50px;
+  top: 0;
+  height: 100vh;
+  width: 60px;
+  transform: translate(0, 0);
+  opacity: 0.5;
+  transition: left 0.5s, opacity 0.5s;
+}
+
+/* 마우스가 navbar-container에 있을 때 navbar가 나타나도록 설정 */
+.navbar-container:hover .navbar {
+  left: 0; /* 네비게이션 바가 화면 안으로 들어오도록 설정 */
+  opacity: 1; /* 완전히 보이도록 설정 */
+}
+
+.nav-item {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.nav-icon {
+  width: 25px;
+  height: auto;
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: -5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+}
+
+.nav-item.active.feedback::before {
+  border-color: #fffac3;
+  box-shadow: 0 0 10px rgba(255, 234, 0, 0.8), 0 0 20px rgba(255, 234, 0, 0.6), 0 0 30px rgba(255, 234, 0, 0.4);
+}
+
+.nav-item.active.folder::before {
+  border-color: #ffb3b3;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4);
+}
+
+.nav-item.active.user::before {
+  border-color: #bcccff;
+  box-shadow: 0 0 10px rgba(0, 98, 255, 0.8), 0 0 20px rgba(0, 98, 255, 0.6), 0 0 30px rgba(0, 98, 255, 0.4);
+}
+
+.nav-item.active.setting::before {
+  border-color: #c3ffc1;
+  box-shadow: 0 0 10px rgba(17, 255, 0, 0.8), 0 0 20px rgba(17, 255, 0, 0.6), 0 0 30px rgba(17, 255, 0, 0.4);
+}
