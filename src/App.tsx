@@ -1,16 +1,20 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import "./App.css";
 
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Feedback from './pages/Feedback';
-import MenTChat from './pages/MenTChat';
-import Folder from './pages/Folder';
-import User from './pages/User';
-import Setting from './pages/Setting';
-
-import HeadTitle from './components/HeadTitle';
-import NavBar from './components/NavBar';
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Feedback from "./pages/Feedback";
+import MenTChat from "./pages/MenTChat";
+import Folder from "./pages/Folder";
+import User from "./pages/User";
+import Setting from "./pages/Setting";
+import HeadTitle from "./components/HeadTitle";
+import NavBar from "./components/Navbar";
 
 function App() {
   return (

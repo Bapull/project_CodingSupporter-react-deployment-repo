@@ -1,0 +1,72 @@
+body {
+  background: #121212;
+  margin: 0;
+}
+
+.login .container {
+  border-radius: 50px;
+  width: 40%;
+  max-width: 657px;
+  height: 80vh;
+  margin: 0 auto;
+  background-color: #f0f3fa;
+}
+
+.login .container input {
+  display: flex;
+  width: 80%;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f0f3fa;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.login input::placeholder {
+  color: rgb(84, 84, 84);
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.login .login-title {
+  margin-top: 30%;
+  margin-left: 9%;
+  font-size: 26px;
+  margin-bottom: 0px;
+  font-weight: 700;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+.login .email {
+}
+
+.login .passwd {
+}
+
+.login .sign-up {
+  display: inline-block;
+  border: 0;
+  margin-left: 10%;
+  font-size: 1rem;
+  color: #5aa4ff;
+}
+
+.login .login-btn {
+  float: right;
+  background-color: #f0f3fa;
+  min-width: 50px;
+  width: 10vh;
+  min-height: 35px;
+  height: 5vh;
+  padding: 1px;
+  margin-right: 8%;
+  font-size: 1rem;
+  color: #ffffff;
+  border-radius: 50px;
+  border: 3px solid #ffffff;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+  text-shadow: 1.5px 1.5px 0px rgba(18, 18, 18, 1);
+}

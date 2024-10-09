@@ -1,5 +1,5 @@
-import { useLocation } from 'react-router-dom';
-import './styles/headTitle.css';
+import { useLocation } from "react-router-dom";
+import "./styles/headTitle.css";
 
 function HeadTitle() {
   const location = useLocation();

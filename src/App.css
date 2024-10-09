@@ -2,3 +2,30 @@ body {
   background: #121212;
   overflow: hidden;
 }
+
+.container {
+  border-radius: 50px;
+  width: 80%;
+  padding: 1%;
+  max-width: 1223px;
+  height: 78vh;
+  margin: 0 auto;
+  background-color: #f0f3fa;
+  transition: cubic-bezier(1, 0, 0, 1);
+}
+
+.w-50 {
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.w-100 {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.home .title {
+  margin: 5%;
+}

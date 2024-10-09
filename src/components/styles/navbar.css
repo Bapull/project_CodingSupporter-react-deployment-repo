@@ -39,7 +39,7 @@
 }
 
 .nav-item.active::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -7px;
   top: -5px;
@@ -51,20 +51,24 @@
 
 .nav-item.active.feedback::before {
   border-color: #fffac3;
-  box-shadow: 0 0 10px rgba(255, 234, 0, 0.8), 0 0 20px rgba(255, 234, 0, 0.6), 0 0 30px rgba(255, 234, 0, 0.4);
+  box-shadow: 0 0 10px rgba(255, 234, 0, 0.8), 0 0 20px rgba(255, 234, 0, 0.6),
+    0 0 30px rgba(255, 234, 0, 0.4);
 }
 
 .nav-item.active.folder::before {
   border-color: #ffb3b3;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6),
+    0 0 30px rgba(255, 0, 0, 0.4);
 }
 
 .nav-item.active.user::before {
   border-color: #bcccff;
-  box-shadow: 0 0 10px rgba(0, 98, 255, 0.8), 0 0 20px rgba(0, 98, 255, 0.6), 0 0 30px rgba(0, 98, 255, 0.4);
+  box-shadow: 0 0 10px rgba(0, 98, 255, 0.8), 0 0 20px rgba(0, 98, 255, 0.6),
+    0 0 30px rgba(0, 98, 255, 0.4);
 }
 
 .nav-item.active.setting::before {
   border-color: #c3ffc1;
-  box-shadow: 0 0 10px rgba(17, 255, 0, 0.8), 0 0 20px rgba(17, 255, 0, 0.6), 0 0 30px rgba(17, 255, 0, 0.4);
+  box-shadow: 0 0 10px rgba(17, 255, 0, 0.8), 0 0 20px rgba(17, 255, 0, 0.6),
+    0 0 30px rgba(17, 255, 0, 0.4);
 }
