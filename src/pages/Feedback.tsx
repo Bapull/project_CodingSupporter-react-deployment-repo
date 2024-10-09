@@ -1,9 +1,9 @@
-import '../styles/feedback.css';
+import "../styles/feedback.css";
 
 function Feedback() {
   return (
     <div className="feedback">
-      <h1>Feedback</h1>
+      <div className="container">Feedback</div>
     </div>
   );
 }

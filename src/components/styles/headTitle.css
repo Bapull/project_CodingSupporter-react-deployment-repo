@@ -1,0 +1,20 @@
+.title-circle {
+  width: 40px;
+  height: 40px;
+  border: 2px solid;
+  border-radius: 50%;
+  margin: 1rem;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.head-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  color: #f0f3fa;
+  letter-spacing: 1px;
+  text-align: flex-start;
+  position: relative;
+}

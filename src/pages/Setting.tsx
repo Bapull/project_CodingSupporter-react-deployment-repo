@@ -1,9 +1,9 @@
-import '../styles/setting.css';
+import "../styles/setting.css";
 
 function Setting() {
   return (
     <div className="setting">
-      <h1>Setting</h1>
+      <div className="container">Setting</div>
     </div>
   );
 }

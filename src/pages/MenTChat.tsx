@@ -1,9 +1,9 @@
-import '../styles/menTChat.css';
+import "../styles/menTChat.css";
 
 function MenTChat() {
   return (
     <div className="menTChat">
-      <h1>MenTChat</h1>
+      <div className="container">MentChat</div>
     </div>
   );
 }
