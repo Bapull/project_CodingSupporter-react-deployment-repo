@@ -3,6 +3,11 @@ body {
   margin: 0;
 }
 
+.login hr {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
 .login .container {
   border-radius: 50px;
   width: 40%;
@@ -40,11 +45,20 @@ body {
   text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.3);
 }
 
-.login .email {
+.google-login {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  margin-top: 7%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+/* .login .email {
 }
 
 .login .passwd {
-}
+} */
 
 .login .sign-up {
   display: inline-block;
