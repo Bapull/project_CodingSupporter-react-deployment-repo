@@ -17,30 +17,24 @@ function Login() {
 
   return (
     <div className="login">
-      <div className="login-left-img">
-        <img src="./images/LoginLeftGIF.gif" alt="gif" className="gif" />
-      </div>
-      <div className="container">
-        <div className="w-100">
-          <h3 className="login-title">Login</h3>
+      <div className="container-wrap">
+        <div className="login-left-img">
+          <img src="./images/LoginLeftGIF.gif" alt="gif" className="gif" />
         </div>
-        <hr />
-        <div className="google-login">
-          <GoogleOAuthProvider clientId="416302884257-rcohtq3ev9o1lif147detlsm92vjko00.apps.googleusercontent.com">
-            <GoogleLogin
-              onSuccess={handleLoginSuccess}
-              onError={handleLoginError}
-            />
-          </GoogleOAuthProvider>
+        <div className="container">
+          <div className="w-100">
+            <h3 className="login-title">Login</h3>
+          </div>
+          <hr />
+          <div className="google-login">
+            <GoogleOAuthProvider clientId="416302884257-rcohtq3ev9o1lif147detlsm92vjko00.apps.googleusercontent.com">
+              <GoogleLogin
+                onSuccess={handleLoginSuccess}
+                onError={handleLoginError}
+              />
+            </GoogleOAuthProvider>
+          </div>
         </div>
-        {/* <div className="w-100">
-          <input type="text" className="email" placeholder="Email@exam.com" />
-          <input type="text" className="passwd" placeholder="Password" />
-        </div>
-        <div>
-          <label className="sign-up">Sign Up</label>
-          <button className="login-btn">Login</button>
-        </div> */}
       </div>
     </div>
   );

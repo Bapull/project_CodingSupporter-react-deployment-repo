@@ -1,3 +1,12 @@
+@keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .login hr {
   margin-left: 10%;
   margin-right: 10%;
@@ -7,11 +16,16 @@
   display: flex;
 }
 
+.container-wrap {
+  display: flex;
+  width: 100%;
+}
+
 .login-left-img {
   display: flex;
   width: 20%;
   height: 60vh;
-  margin-left: 10%;
+  margin-left: 5%;
   margin-top: 1%;
   opacity: 1;
   transition: all 0.3s;
@@ -21,30 +35,15 @@
   float: right;
   margin-right: 13%;
   border-radius: 50px;
-  width: 40%;
+  width: 80%;
   max-width: 657px;
   height: 80vh;
   background-color: #f0f3fa;
-  transition: all 0.2s;
+  animation: loading 1s;
 }
 
-/* .login .container input {
-  display: flex;
-  width: 80%;
-  height: 30px;
-  border: 1px solid;
-  border-radius: 10px;
-  margin: 0 auto;
-  margin-top: 15px;
-  padding: 10px;
-  background-color: #f0f3fa;
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
-} */
-
-.login input::placeholder {
-  color: rgb(84, 84, 84);
-  font-size: 0.8rem;
-  font-style: italic;
+.container.on {
+  width: 40%;
 }
 
 .login .login-title {
@@ -57,7 +56,6 @@
 }
 
 .google-login {
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   margin-top: 7%;
@@ -65,38 +63,7 @@
   margin-right: 9.5%;
 }
 
-/* .login .email {
-}
-
-.login .passwd {
-} */
-
-.login .sign-up {
-  display: inline-block;
-  border: 0;
-  margin-left: 10%;
-  font-size: 1rem;
-  color: #5aa4ff;
-}
-
-.login .login-btn {
-  float: right;
-  background-color: #f0f3fa;
-  min-width: 50px;
-  width: 10vh;
-  min-height: 35px;
-  height: 5vh;
-  padding: 1px;
-  margin-right: 8%;
-  font-size: 1rem;
-  color: #ffffff;
-  border-radius: 50px;
-  border: 3px solid #ffffff;
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
-  text-shadow: 1.5px 1.5px 0px rgba(18, 18, 18, 1);
-}
-
-/* 화면 크기에 따른 컨테이너 크기 */
+/* 화면 너비가 1600px 이하일 때 */
 @media screen and (max-width: 1600px) {
   .login .login-left-img {
     display: none;
@@ -122,17 +89,20 @@
   }
 }
 
+/* 화면 너비가 576px 이하일 때 */
 @media screen and (max-width: 576px) {
   .google-login {
   }
 }
 
+/* 화면 높이가 700px 이하일 때 */
 @media screen and (max-height: 700px) {
   .login .container {
     height: 75vh;
   }
 }
 
+/* 화면 높이가 500px 이하일 때 */
 @media screen and (max-height: 500px) {
   .login .container {
     height: 65vh;
