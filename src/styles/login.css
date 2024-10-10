@@ -3,16 +3,32 @@
   margin-right: 10%;
 }
 
+.login {
+  display: flex;
+}
+
+.login-left-img {
+  display: flex;
+  width: 20%;
+  height: 60vh;
+  margin-left: 10%;
+  margin-top: 1%;
+  opacity: 1;
+  transition: all 0.3s;
+}
+
 .login .container {
+  float: right;
+  margin-right: 10%;
   border-radius: 50px;
   width: 40%;
   max-width: 657px;
   height: 80vh;
-  margin: 0 auto;
   background-color: #f0f3fa;
+  transition: all 0.2s;
 }
 
-.login .container input {
+/* .login .container input {
   display: flex;
   width: 80%;
   height: 30px;
@@ -23,7 +39,7 @@
   padding: 10px;
   background-color: #f0f3fa;
   box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
-}
+} */
 
 .login input::placeholder {
   color: rgb(84, 84, 84);
@@ -78,4 +94,47 @@
   border: 3px solid #ffffff;
   box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
   text-shadow: 1.5px 1.5px 0px rgba(18, 18, 18, 1);
+}
+
+/* 화면 크기에 따른 컨테이너 크기 */
+@media screen and (max-width: 1600px) {
+  .login .login-left-img {
+    display: none;
+    width: 0;
+    margin: 0;
+    height: 30vh;
+    transition: all 0.3s;
+  }
+
+  .login-left-img .gif {
+    margin-left: 50px;
+  }
+
+  .login .container {
+    width: 100%;
+    float: none;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .login .login-title {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .google-login {
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .login .container {
+    height: 75vh;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .login .container {
+    height: 65vh;
+  }
 }
