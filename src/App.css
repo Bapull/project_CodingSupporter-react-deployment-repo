@@ -10,10 +10,10 @@ body {
   width: 80%;
   padding: 1%;
   max-width: 1223px;
-  height: 78vh;
+  height: 80vh;
   margin: 0 auto;
   background-color: #f0f3fa;
-  transition: cubic-bezier(1, 0, 0, 1);
+  transition: all 0.1s;
 }
 
 .w-50 {
@@ -30,4 +30,16 @@ body {
 
 .home .title {
   margin: 5%;
+}
+
+@media screen and (max-height: 700px) {
+  .container {
+    height: 75vh;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  .container {
+    height: 65vh;
+  }
 }

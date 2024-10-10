@@ -19,7 +19,7 @@
 
 .login .container {
   float: right;
-  margin-right: 10%;
+  margin-right: 13%;
   border-radius: 50px;
   width: 40%;
   max-width: 657px;
@@ -111,7 +111,7 @@
   }
 
   .login .container {
-    width: 100%;
+    width: 60%;
     float: none;
     margin-right: auto;
     margin-left: auto;
