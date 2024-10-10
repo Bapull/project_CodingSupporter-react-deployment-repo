@@ -1,8 +1,3 @@
-body {
-  background: #121212;
-  margin: 0;
-}
-
 .login hr {
   margin-left: 10%;
   margin-right: 10%;
@@ -50,8 +45,8 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 7%;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: 9.5%;
+  margin-right: 9.5%;
 }
 
 /* .login .email {
