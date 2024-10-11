@@ -9,7 +9,7 @@ import Folder from './pages/Folder';
 import User from './pages/User';
 import Setting from './pages/Setting';
 import HeadTitle from './components/HeadTitle';
-import NavBar from './components/NavBar';
+import NavBar from './components/Navbar';
 
 function App() {
   return (

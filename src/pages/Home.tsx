@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import gsap from 'gsap';
 import '../styles/home.css';
 
 interface IntroImage {
@@ -19,6 +20,7 @@ const images: IntroImage[] = [
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
+
   const handleMouseEnter = (event: React.MouseEvent<HTMLVideoElement>) => {
     const video = event.currentTarget;
     video.play();
@@ -42,7 +44,9 @@ const Home: React.FC = () => {
       </button>
       <div className="content">
         <h1 className="title">
-          Welcome, Coding Supporter!
+          Hi there,
+          <br />
+          I'm Coding Supporter!
           <br />
           AI와 멘토가 함께하는 새로운 학습 경험을 시작해보세요!
         </h1>
@@ -54,22 +58,30 @@ const Home: React.FC = () => {
           <br />
           Coding Supporter와 함께 경험을 쌓고, 문제 해결 능력을 키워보세요!
         </p>
-        <div className="intro-images">
-          {images.map((image) => (
-            <div key={image.id} className="intro-image">
-              <video
-                className="intro-video"
-                poster={image.thumbnail}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                muted
-                loop
-              >
-                <source src={image.videoSrc} type="video/mp4" />
-              </video>
-            </div>
-          ))}
+        <div className="recommend-user">
+          <p>코딩이 처음인 분들</p>
+          <p>혼자 공부하기 막막한 초보 개발자</p>
+          <p>
+            멘토와의 연결을 통해
+            <br />더 빠르게 성장하고 싶은 분들
+          </p>
         </div>
+      </div>
+      <div className="intro-images">
+        {images.map((image) => (
+          <div key={image.id} className="intro-image">
+            <video
+              className="intro-video"
+              poster={image.thumbnail}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              muted
+              loop
+            >
+              <source src={image.videoSrc} type="video/mp4" />
+            </video>
+          </div>
+        ))}
       </div>
     </div>
   );

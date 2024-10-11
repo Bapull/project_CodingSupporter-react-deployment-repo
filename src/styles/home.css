@@ -13,13 +13,19 @@ body {
   height: 100vh;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .container {
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .login-button {
   display: flex;
   float: right;
+  justify-content: center;
+  align-items: center;
   margin: 10px 20px;
   border: none;
   background-color: #f0f3fa;
@@ -36,9 +42,38 @@ body {
 
 .content h1 {
   margin-top: 80px;
+  margin-bottom: 20px;
   font-size: 2rem;
   font-weight: 700;
   color: #333;
+}
+
+.content p {
+  font-size: 1rem;
+  margin-top: 40px;
+}
+
+.recommend-user {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+  max-width: 1100px;
+  margin: 20px auto;
+}
+
+.recommend-user p {
+  width: calc(26% - 5px);
+  height: 70px;
+  border: 2px solid #121212;
+  border-radius: 8px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30px;
 }
 
 .intro-images {
