@@ -12,12 +12,14 @@ type User = {
 function User() {
   const [user, setUser] = useState<User | null>(null)
   useEffect(()=>{
-    fetch('https://localhost:3000/auth/status',{
+    fetch('https://localhost:3000/user/info',{
       method:"GET",
       credentials:'include'
     })
     .then(res=>res.json())
-    .then(data=>setUser(data))
+    .then(data=>{
+      console.log(data.message)
+      setUser(data.info)})
   },[])
 
   const logout = () => {
