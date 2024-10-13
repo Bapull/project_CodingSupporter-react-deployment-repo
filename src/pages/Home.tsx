@@ -24,6 +24,8 @@ const Home: React.FC = () => {
   const handleMouseEnter = (event: React.MouseEvent<HTMLVideoElement>) => {
     const video = event.currentTarget;
     video.play();
+
+    document.querySelector('.container')?.classList.add('dimmed');
   };
 
   const handleMouseLeave = (event: React.MouseEvent<HTMLVideoElement>) => {
@@ -31,6 +33,8 @@ const Home: React.FC = () => {
     video.pause();
     video.currentTime = 0;
     video.load();
+
+    document.querySelector('.container')?.classList.remove('dimmed');
   };
 
   const handleLoginClick = () => {
@@ -43,14 +47,14 @@ const Home: React.FC = () => {
         시작하기
       </button>
       <div className="content">
-        <h1 className="title">
+        <h1 className="content-title">
           Hi there,
           <br />
           I'm Coding Supporter!
           <br />
           AI와 멘토가 함께하는 새로운 학습 경험을 시작해보세요!
         </h1>
-        <p>
+        <p className="content-text">
           우리의 목표는 초보자도 편하게 코딩을 배울 수 있는 환경을 제공하는 것입니다 <br />
           AI와 멘토가 제공하는 도움을 통해, 직접 문제를 해결하며 성장할 수 있습니다
           <br />
