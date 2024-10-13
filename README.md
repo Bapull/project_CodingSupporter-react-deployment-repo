@@ -1,3 +1,6 @@
+vite에서 mkcert로 localhost를 https로 만드는 법
+https://velog.io/@byebye62/Vite%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%97%90%EC%84%9C-mkcert-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

@@ -16,6 +16,7 @@ function Login() {
           <label className="sign-up">Sign Up</label>
           <button className="login-btn">Login</button>
         </div>
+        <a href="https://localhost:3000/auth/google/login">구글 로그인</a>
       </div>
     </div>
   );

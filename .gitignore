@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# mkcert 
+cert.pem
+key.pem
+mkcert
+
+#dockerfile
+Dockerfile
