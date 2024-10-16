@@ -16,4 +16,5 @@
   letter-spacing: 1px;
   text-align: flex-start;
   position: relative;
+  z-index: 100;
 }

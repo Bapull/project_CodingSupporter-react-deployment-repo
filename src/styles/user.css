@@ -1,0 +1,9 @@
+.user .container {
+}
+
+.user .google-logo {
+  display: block;
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 15%;
+}
