@@ -17,6 +17,7 @@ import sessionStorageMiddleware from "./sessionStorageMiddleware"; // 세션 스
   }
 }; */
 
+// 로그인 정보 담아두기
 // 세션 스토리지 방식
 const loadState = () => {
   try {
@@ -33,7 +34,7 @@ const loadState = () => {
 
 const preloadedState = loadState();
 
-// 로컬 스토리지 방식
+// 로컬 스토리지 방식 (스토어 생성)
 /* const store = configureStore({
   reducer: {
     user: userReducer,
@@ -43,7 +44,7 @@ const preloadedState = loadState();
     getDefaultMiddleware().concat(localStorageMiddleware),
 }); */
 
-// 세션 스토리지 방식
+// 세션 스토리지 방식 (스토어 생성)
 const store = configureStore({
   reducer: {
     user: userReducer,

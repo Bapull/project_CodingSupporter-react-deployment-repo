@@ -27,7 +27,7 @@ function User() {
       .then((res) => res.json())
       .then((data) => {
         if (data.info) {
-          dispatch(setUser(data.info));
+          dispatch(setUser(data.info)); // 유저 정보를 dispatch를 이용해서 리덕스 스토어에 저장
         }
       });
   }, [dispatch]);
@@ -37,7 +37,7 @@ function User() {
       method: "GET",
       credentials: "include",
     }).then(() => {
-      dispatch(clearUser());
+      dispatch(clearUser()); // 유저 정보를 dispatch를 이용해서 리덕스 스토어에서 삭제
       window.location.href = "https://localhost:5173";
     });
   };
@@ -45,6 +45,7 @@ function User() {
   return (
     <div className="user">
       <div className="container">
+        {/* 로그인 여부에 따라 다른 화면 표시 */}
         {isLoggedIn ? (
           <>
             <h2>name:{user?.name}</h2>

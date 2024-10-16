@@ -4,6 +4,7 @@ function Login() {
   return (
     <div className="login">
       <div className="container">
+        {/* 로그인 버튼 클릭 시 구글 로그인 페이지로 이동 */}
         <a href="https://localhost:3000/auth/google/login">
           <img src="./images/web_neutral_rd_ctn.svg" className="google-logo" />
         </a>
