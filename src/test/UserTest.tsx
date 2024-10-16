@@ -146,7 +146,10 @@ function UserTest() {
   }
   // 역할 변경
   const changePosition = () => {
-    
+    fetch(`${baseUrl}/user/position`,{
+      method:'PATCH',
+      credentials:'include'
+    })
   }
   return (
     <div className="user">
