@@ -10,6 +10,7 @@ import User from './pages/User';
 import Setting from './pages/Setting';
 import HeadTitle from './components/HeadTitle';
 import NavBar from './components/Navbar';
+import UserTest from './test/UserTest';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <Route path="/folder" element={<Folder />} />
         <Route path="/user" element={<User />} />
         <Route path="/setting" element={<Setting />} />
+        {/* {테스트 페이지} */}
+        <Route path='/user-test' element={<UserTest />}/>
       </Routes>
     </Router>
   );
