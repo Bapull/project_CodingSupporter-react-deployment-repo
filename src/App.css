@@ -1,6 +1,7 @@
 body {
   background: #121212;
   overflow: hidden;
+  margin: 0;
 }
 
 .container {
