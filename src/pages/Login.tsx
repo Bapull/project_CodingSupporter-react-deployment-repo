@@ -4,7 +4,11 @@ function Login() {
   return (
     <div className="login">
       <div className="container">
-        <div className="w-100">
+        {/* 로그인 버튼 클릭 시 구글 로그인 페이지로 이동 */}
+        <a href="https://localhost:3000/auth/google/login">
+          <img src="./images/web_neutral_rd_ctn.svg" className="google-logo" />
+        </a>
+        {/* <div className="w-100">
           <h3 className="login-title">Login</h3>
         </div>
         <div className="google-login"></div>
@@ -15,8 +19,7 @@ function Login() {
         <div>
           <label className="sign-up">Sign Up</label>
           <button className="login-btn">Login</button>
-        </div>
-        <a href="https://localhost:3000/auth/google/login">구글 로그인</a>
+        </div> */}
       </div>
     </div>
   );

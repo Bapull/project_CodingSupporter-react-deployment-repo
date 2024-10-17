@@ -1,6 +1,9 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/home.css';
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "../styles/home.css";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 interface IntroImage {
   id: number;
@@ -9,22 +12,48 @@ interface IntroImage {
 }
 
 const images: IntroImage[] = [
-  { id: 1, thumbnail: './images/HomeInfo/InputCode&Feedback.png', videoSrc: './video/HomeInfo/VideoEx.mp4' },
-  { id: 2, thumbnail: './images/HomeInfo/RecommendMento.png', videoSrc: './video/HomeInfo/VideoEx.mp4' },
-  { id: 3, thumbnail: './images/HomeInfo/ShareIncorrectNote.png', videoSrc: './video/HomeInfo/VideoEx.mp4' },
-  { id: 4, thumbnail: './images/HomeInfo/ShareNote&ChatMento.png', videoSrc: './video/HomeInfo/VideoEx.mp4' },
-  { id: 5, thumbnail: './images/HomeInfo/ViewUser.png', videoSrc: './video/HomeInfo/VideoEx.mp4' },
-  { id: 6, thumbnail: './images/HomeInfo/Folder.png', videoSrc: './video/HomeInfo/VideoEx.mp4' },
+  {
+    id: 1,
+    thumbnail: "./images/HomeInfo/InputCode&Feedback.png",
+    videoSrc: "./video/HomeInfo/VideoEx.mp4",
+  },
+  {
+    id: 2,
+    thumbnail: "./images/HomeInfo/RecommendMento.png",
+    videoSrc: "./video/HomeInfo/VideoEx.mp4",
+  },
+  {
+    id: 3,
+    thumbnail: "./images/HomeInfo/ShareIncorrectNote.png",
+    videoSrc: "./video/HomeInfo/VideoEx.mp4",
+  },
+  {
+    id: 4,
+    thumbnail: "./images/HomeInfo/ShareNote&ChatMento.png",
+    videoSrc: "./video/HomeInfo/VideoEx.mp4",
+  },
+  {
+    id: 5,
+    thumbnail: "./images/HomeInfo/ViewUser.png",
+    videoSrc: "./video/HomeInfo/VideoEx.mp4",
+  },
+  {
+    id: 6,
+    thumbnail: "./images/HomeInfo/Folder.png",
+    videoSrc: "./video/HomeInfo/VideoEx.mp4",
+  },
 ];
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.user.user);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
   const handleMouseEnter = (event: React.MouseEvent<HTMLVideoElement>) => {
     const video = event.currentTarget;
     video.play();
 
-    document.querySelector('.container')?.classList.add('dimmed');
+    document.querySelector(".container")?.classList.add("dimmed");
   };
 
   const handleMouseLeave = (event: React.MouseEvent<HTMLVideoElement>) => {
@@ -33,18 +62,25 @@ const Home: React.FC = () => {
     video.currentTime = 0;
     video.load();
 
-    document.querySelector('.container')?.classList.remove('dimmed');
+    document.querySelector(".container")?.classList.remove("dimmed");
   };
 
   const handleLoginClick = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
     <div className="container">
-      <button className="login-button" onClick={handleLoginClick}>
-        시작하기
-      </button>
+
+      {isLoggedIn ? (
+        <h3 className="login-button" style={{ color: "black" }}>
+          안녕하세요. {user?.name}님!
+        </h3>
+      ) : (
+        <button className="login-button" onClick={handleLoginClick}>
+          시작하기
+        </button>
+      )}
       <div className="home-content">
         <h1 className="home-content-title">
           Hi there,
