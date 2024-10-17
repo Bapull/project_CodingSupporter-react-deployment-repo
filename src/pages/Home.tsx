@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import gsap from 'gsap';
 import '../styles/home.css';
 
 interface IntroImage {
@@ -46,15 +45,15 @@ const Home: React.FC = () => {
       <button className="login-button" onClick={handleLoginClick}>
         시작하기
       </button>
-      <div className="content">
-        <h1 className="content-title">
+      <div className="home-content">
+        <h1 className="home-content-title">
           Hi there,
           <br />
           I'm Coding Supporter!
           <br />
           AI와 멘토가 함께하는 새로운 학습 경험을 시작해보세요!
         </h1>
-        <p className="content-text">
+        <p className="home-content-text">
           우리의 목표는 초보자도 편하게 코딩을 배울 수 있는 환경을 제공하는 것입니다 <br />
           AI와 멘토가 제공하는 도움을 통해, 직접 문제를 해결하며 성장할 수 있습니다
           <br />

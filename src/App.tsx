@@ -7,7 +7,7 @@ import Feedback from './pages/Feedback';
 import MenTChat from './pages/MenTChat';
 import Folder from './pages/Folder';
 import User from './pages/User';
-import Setting from './pages/Setting';
+import Setting from './pages/Settings';
 import HeadTitle from './components/HeadTitle';
 import NavBar from './components/Navbar';
 

@@ -31,8 +31,8 @@ function Settings() {
 
   return (
     <div className="settings">
-      <div className="container">
-        <div className="sidebar">
+      <div className="setting-container">
+        <div className="setting-sidebar">
           <ul>
             <li onClick={() => setSelectedMenu('account')} className={selectedMenu === 'account' ? 'active' : ''}>
               Information
@@ -58,7 +58,7 @@ function Settings() {
           </ul>
         </div>
 
-        <div className="content">{handleMenuClick()}</div>
+        <div className="setting-content">{handleMenuClick()}</div>
       </div>
     </div>
   );
