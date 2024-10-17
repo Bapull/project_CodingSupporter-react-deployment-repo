@@ -1,13 +1,8 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 // Provider는 간단히 말하자면 상태를 적용시킬 범위를 지정해줍니다.
-import { Provider } from "react-redux";
-import store from "./redux/store";
-import "./App.css";
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import './App.css';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -18,6 +13,9 @@ import User from './pages/User';
 import Setting from './pages/Settings';
 import HeadTitle from './components/HeadTitle';
 import NavBar from './components/Navbar';
+
+// {테스트 페이지}
+import UserTest from './test/UserTest';
 
 function App() {
   return (
