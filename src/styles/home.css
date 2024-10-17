@@ -13,15 +13,18 @@ body {
   height: 100vh;
 }
 
-::-webkit-scrollbar {
+.container {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer/Edge */
+}
+
+/* Firefox용 */
+.container::-webkit-scrollbar {
   display: none;
 }
 
-.container {
-  overflow-y: scroll;
-}
-
-.container.dimmed {
+.container .container.dimmed {
   background-color: rgba(235, 235, 235, 0.3);
   transition: background-color 0.3s ease;
 }
