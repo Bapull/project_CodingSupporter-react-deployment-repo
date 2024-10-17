@@ -9,16 +9,15 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import "./App.css";
 
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Feedback from "./pages/Feedback";
-import MenTChat from "./pages/MenTChat";
-import Folder from "./pages/Folder";
-import User from "./pages/User";
-import Setting from "./pages/Setting";
-import HeadTitle from "./components/HeadTitle";
-import NavBar from "./components/Navbar";
-import UserTest from "./test/UserTest";
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Feedback from './pages/Feedback';
+import MenTChat from './pages/MenTChat';
+import Folder from './pages/Folder';
+import User from './pages/User';
+import Setting from './pages/Settings';
+import HeadTitle from './components/HeadTitle';
+import NavBar from './components/Navbar';
 
 function App() {
   return (
