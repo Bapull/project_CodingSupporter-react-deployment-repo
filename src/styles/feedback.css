@@ -1,0 +1,53 @@
+.feedback .container {
+  display: flex;
+  overflow: hidden;
+}
+
+.incorrect-note-section,
+.question-section {
+  flex: 1;
+  margin: 5px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.divider {
+  width: 1px;
+  background-color: #959fb6;
+  height: 100%;
+}
+
+.question-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 가운데 정렬 */
+  height: 100%;
+  position: relative;
+}
+
+.error-name-input,
+.error-code-input,
+.error-question-input {
+  width: 95%;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  resize: none;
+  outline: none;
+
+  /* 스크롤바 제거 */
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+
+.error-code-input,
+.error-question-input {
+  height: 10vh;
+}
+
+.submit-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
