@@ -151,6 +151,25 @@ function UserTest() {
       credentials:'include'
     })
   }
+  const generateIncorrectNote = () => {
+    fetch(`${baseUrl}/incorrect-note/generate`,{
+      method:'POST',
+      credentials:'include',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        code:`
+        #include <stdio.h>
+        int main() {
+        int a = 10;
+        printf(\"%f\",a);
+        return 0;}`,
+        error:"warning: format '%f' expects argument of type 'double', but argument 2 has type 'int' [-Wformat=]"
+      })
+    }).then(res=>res.json())
+    .then(data=>console.log(data))
+  }
   return (
     <div className="user">
       <div className="container">
@@ -187,6 +206,8 @@ function UserTest() {
         <button onClick={folder}>폴더정보 불러오기</button>
         <div>---------------------------------</div>
         <button onClick={changePosition}>역할 변경</button>
+        <div>---------------------------------</div>
+        <button onClick={generateIncorrectNote}>gpt 오답노트 생성</button>
       </div>
       
       </div>
