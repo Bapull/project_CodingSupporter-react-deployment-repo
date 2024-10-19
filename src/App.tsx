@@ -18,7 +18,7 @@ import User from './pages/User';
 import Setting from './pages/Settings';
 import HeadTitle from './components/HeadTitle';
 import NavBar from './components/Navbar';
-
+import UserTest from "./test/UserTest";
 function App() {
   return (
     <Provider store={store}>
