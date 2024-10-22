@@ -12,13 +12,22 @@ type User = {
 type GraphInfo = {
   [key:string]: number;
 }
+type Note = {
+  language:string
+  errorType:string
+  mdFile:string
+}
 function UserTest() {
   const baseUrl = 'https://localhost:3000'
 
   // input value를 가져오기위한 ref
   const nameRef = useRef<HTMLInputElement>(null)
   const lanRef = useRef<HTMLInputElement>(null)
-
+  const [note, setNote] = useState<Note>({
+    language:'',
+    errorType:'',
+    mdFile:''
+  })
   const [user, setUser] = useState<User>({
     googleId:'',
     id:0,
@@ -168,6 +177,17 @@ function UserTest() {
         error:"warning: format '%f' expects argument of type 'double', but argument 2 has type 'int' [-Wformat=]"
       })
     }).then(res=>res.json())
+    .then(data=>setNote(data.data))
+  }
+  const saveNote = () => {
+    fetch(`${baseUrl}/incorrect-note/save`,{
+      method:'POST',
+      credentials:'include',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(note)
+    }).then(res=>res.json())
     .then(data=>console.log(data))
   }
   return (
@@ -208,6 +228,7 @@ function UserTest() {
         <button onClick={changePosition}>역할 변경</button>
         <div>---------------------------------</div>
         <button onClick={generateIncorrectNote}>gpt 오답노트 생성</button>
+        <button onClick={saveNote}>오답노트 저장</button>
       </div>
       
       </div>
