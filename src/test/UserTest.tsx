@@ -23,6 +23,7 @@ function UserTest() {
   // input value를 가져오기위한 ref
   const nameRef = useRef<HTMLInputElement>(null)
   const lanRef = useRef<HTMLInputElement>(null)
+  const noteNameRef = useRef<HTMLInputElement>(null)
   const [note, setNote] = useState<Note>({
     language:'',
     errorType:'',
@@ -190,6 +191,12 @@ function UserTest() {
     }).then(res=>res.json())
     .then(data=>console.log(data))
   }
+  const getNote = () => {
+    fetch(`${baseUrl}/incorrect-note/s3?note-name=${noteNameRef.current?.value}`,{
+      credentials:'include'
+    }).then(res=>res.json())
+    .then(data=>console.log(data))
+  }
   return (
     <div className="user">
       <div className="container">
@@ -229,6 +236,9 @@ function UserTest() {
         <div>---------------------------------</div>
         <button onClick={generateIncorrectNote}>gpt 오답노트 생성</button>
         <button onClick={saveNote}>오답노트 저장</button>
+        <div>---------------------------------</div>
+        <input type="text" ref={noteNameRef} />
+        <button onClick={getNote}>오답노트 상세 불러오기</button>
       </div>
       
       </div>
