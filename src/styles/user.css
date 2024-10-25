@@ -1,10 +1,12 @@
 .user .wrapper {
+  box-sizing: border-box;
   display: flex;
   width: 80%;
-  max-width: 1223px;
-  height: 78vh;
+  max-width: 1257px;
+  height: 81.5vh;
   margin: 0 auto;
-  background-color: #f0f3fa;
+  padding: 0 auto;
+  background-color: none;
   transition: cubic-bezier(1, 0, 0, 1);
 }
 
@@ -20,7 +22,7 @@
   border-radius: 50px;
   width: 29%;
   padding: 2%;
-  background-color: blue;
+  background-color: #f0f3fa;
   transition: cubic-bezier(1, 0, 0, 1);
 }
 
@@ -28,9 +30,9 @@
   order: 2;
   border-radius: 50px;
   margin-left: 1%;
-  width: 65%;
+  width: 70%;
   padding: 2%;
-  background-color: red;
+  background-color: #f0f3fa;
   transition: cubic-bezier(1, 0, 0, 1);
 }
 
@@ -60,8 +62,8 @@
 }
 
 .user .profile-part {
-  text-shadow: -1px 0px #007517, 0px 1px #007517, 1px 0px #007517,
-    0px -1px #007517;
+  text-shadow: -1px 0px #f0f3fa, 0px 1px #f0f3fa, 1px 0px #f0f3fa,
+    0px -1px #f0f3fa;
   font-weight: bold;
   font-size: 1.5em;
   margin: 0 auto;
@@ -73,4 +75,31 @@
   margin-bottom: 10px;
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+.user .profile-language-list {
+  margin: 0 auto;
+  padding: 2%;
+  overflow: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.user .profile-language-list-content {
+  background-color: rgb(220, 220, 220);
+  display: inline;
+  margin: 0 auto;
+  margin-right: 5%;
+  border-radius: 30px;
+  padding: 2%;
+  font-weight: bold;
+}
+
+.user .logout-button {
+  display: block;
+  float: right;
+  border: 0;
+  background-color: transparent;
+  border-radius: 30px;
+  color: rgb(40, 140, 255);
 }

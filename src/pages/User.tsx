@@ -19,6 +19,7 @@ function User() {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const baseUrl = "https://localhost:3000";
 
+  // 유저 정보 불러오기
   useEffect(() => {
     fetch(`${baseUrl}/user/info`, {
       method: "GET",
@@ -32,6 +33,7 @@ function User() {
       });
   }, [dispatch]);
 
+  // 로그아웃
   const logout = () => {
     fetch(`${baseUrl}/auth/logout`, {
       method: "GET",
@@ -65,7 +67,9 @@ function User() {
                 <ul className="profile-language-list">
                   {JSON.parse(user.useLanguage).map(
                     (language: string, index: number) => (
-                      <li key={index}>{language}</li>
+                      <li key={index} className="profile-language-list-content">
+                        {language}
+                      </li>
                     )
                   )}
                 </ul>
@@ -73,8 +77,9 @@ function User() {
             </div>
           </div>
           <div className="user-content-right">
-            <p>asdmasopdasmddasdsaopadmaops</p>
-            <button onClick={logout}>로그아웃</button>
+            <button onClick={logout} className="logout-button">
+              로그아웃
+            </button>
           </div>
         </div>
       ) : (
