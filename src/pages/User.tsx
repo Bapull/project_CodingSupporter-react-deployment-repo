@@ -44,25 +44,44 @@ function User() {
 
   return (
     <div className="user">
-      <div className="container">
-        {/* 로그인 여부에 따라 다른 화면 표시 */}
-        {isLoggedIn ? (
-          <>
-            <h2>name:{user?.name}</h2>
-            <img src={user?.profilePicture} alt="프로필사진" />
-            <p>역할: {user?.position === 1 ? "튜터" : "튜티"}</p>
-            <p>사용 언어: {user?.useLanguage}</p>
+      {/* 로그인 여부에 따라 다른 화면 표시 */}
+      {isLoggedIn ? (
+        <div className="wrapper">
+          <div className="user-content-left">
+            <div className="content-left-top">
+              <img
+                src={user?.profilePicture}
+                alt="프로필사진"
+                className="profile-image"
+              />
+              <h2 className="profile-name">{user?.name}</h2>
+            </div>
+            <div className="content-left-middle">
+              <p className="profile-part">
+                {user?.position === 1 ? "멘토" : "학생"}
+              </p>
+              <p className="profile-language">자주 쓰는 언어</p>
+              {user?.useLanguage && (
+                <ul className="profile-language-list">
+                  {JSON.parse(user.useLanguage).map(
+                    (language: string, index: number) => (
+                      <li key={index}>{language}</li>
+                    )
+                  )}
+                </ul>
+              )}
+            </div>
+          </div>
+          <div className="user-content-right">
+            <p>asdmasopdasmddasdsaopadmaops</p>
             <button onClick={logout}>로그아웃</button>
-          </>
-        ) : (
-          <a href="https://localhost:3000/auth/google/login">
-            <img
-              src="./images/web_neutral_rd_ctn.svg"
-              className="google-logo"
-            />
-          </a>
-        )}
-      </div>
+          </div>
+        </div>
+      ) : (
+        <a href="https://localhost:3000/auth/google/login">
+          <img src="./images/web_neutral_rd_ctn.svg" className="google-logo" />
+        </a>
+      )}
     </div>
   );
 }

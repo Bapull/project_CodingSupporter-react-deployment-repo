@@ -1,4 +1,11 @@
-.user .container {
+.user .wrapper {
+  display: flex;
+  width: 80%;
+  max-width: 1223px;
+  height: 78vh;
+  margin: 0 auto;
+  background-color: #f0f3fa;
+  transition: cubic-bezier(1, 0, 0, 1);
 }
 
 .user .google-logo {
@@ -6,4 +13,64 @@
   width: 30%;
   margin: 0 auto;
   margin-top: 15%;
+}
+
+.user-content-left {
+  order: 1;
+  border-radius: 50px;
+  width: 29%;
+  padding: 2%;
+  background-color: blue;
+  transition: cubic-bezier(1, 0, 0, 1);
+}
+
+.user-content-right {
+  order: 2;
+  border-radius: 50px;
+  margin-left: 1%;
+  width: 65%;
+  padding: 2%;
+  background-color: red;
+  transition: cubic-bezier(1, 0, 0, 1);
+}
+
+.user .content-left-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12%;
+}
+
+.user .profile-image {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.user .profile-name {
+  text-shadow: -0.7px 0px #f0f3fa, 0px 0.7px #f0f3fa, 0.7px 0px #f0f3fa,
+    0px -0.7px #f0f3fa;
+  display: inline-block;
+  margin-right: 50%;
+}
+
+.user .content-left-middle {
+  display: block;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.user .profile-part {
+  text-shadow: -1px 0px #007517, 0px 1px #007517, 1px 0px #007517,
+    0px -1px #007517;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 0 auto;
+  margin-bottom: 13%;
+}
+
+.user .profile-language {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
