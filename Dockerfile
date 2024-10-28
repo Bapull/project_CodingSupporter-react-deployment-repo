@@ -4,16 +4,15 @@ WORKDIR /app
 
 COPY tsconfig*.json ./
 
-COPY package.json ./
-
-RUN yarn install
+COPY package*.json ./
+RUN npm install
 
 COPY . .
 
 ARG VITE_API_URL
 ENV VITE_API_URL=${VITE_API_URL}
 
-RUN yarn build
+RUN npm run build || (echo "Build failed" && exit 1)
 
 FROM node:18-alpine
 
@@ -21,10 +20,10 @@ WORKDIR /app
 
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/package.json ./
 
 ENV VITE_API_URL=${VITE_API_URL}
 
 EXPOSE 5173
 
-CMD ["yarn", "preview", "--host"]
+CMD ["npm", "run", "preview", "--", "--host"]
