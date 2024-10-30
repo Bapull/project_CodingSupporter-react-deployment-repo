@@ -48,7 +48,7 @@ const preloadedState = loadState();
 const store = configureStore({
   reducer: {
     user: userReducer,
-  },
+  } as any,
   preloadedState,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(sessionStorageMiddleware),
