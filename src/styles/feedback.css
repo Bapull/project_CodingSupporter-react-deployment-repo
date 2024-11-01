@@ -6,6 +6,7 @@
 .incorrect-note-section,
 .question-section {
   flex: 1;
+  width: 50%;
   margin: 5px;
   padding: 20px;
   box-sizing: border-box;

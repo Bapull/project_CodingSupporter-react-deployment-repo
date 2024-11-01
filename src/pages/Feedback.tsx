@@ -13,7 +13,7 @@ interface NoteData {
   mdFile: string;
 }
 
-function Feedback() {
+const Feedback: React.FC = () => {
   const [code, setCode] = useState('');
   const [question, setQuestion] = useState('');
   const [noteData, setNoteData] = useState<NoteData | null>(null);
@@ -47,7 +47,6 @@ function Feedback() {
 
   // POST 요청: 코드와 질문을 보내고 데이터 수신
   const handleSubmitQuestion = async () => {
-    // code를 백틱으로 감싸서 문자열 생성
     const formattedCode = `\`\`\`\n${code}\n\`\`\``;
     try {
       const response = await fetch(`${baseUrl}/incorrect-note/generate`, {
@@ -55,7 +54,7 @@ function Feedback() {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // 쿠키 포함
+        credentials: 'include',
         body: JSON.stringify({ code: formattedCode, question }),
       });
 
@@ -65,7 +64,7 @@ function Feedback() {
 
       const data = await response.json();
       console.log(data);
-      setNoteData(data); // 오답노트 데이터 저장
+      setNoteData(data.data); // noteData를 설정할 때 data.data를 사용
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
@@ -77,23 +76,25 @@ function Feedback() {
 
   // 오답노트 저장 요청
   const handleSave = async () => {
-    if (!noteData) return;
-
     try {
       const response = await fetch(`${baseUrl}/incorrect-note/save`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(setNoteData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(noteData),
       });
 
       if (!response.ok) {
-        throw new Error('오답노트 저장에 실패했습니다.');
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
       }
 
-      const saveResponse = await response.json();
-      alert(saveResponse.message); // 저장 성공 메시지 표시
+      alert('Note saved successfully!');
     } catch (error) {
-      if (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
         alert('알 수 없는 오류가 발생했습니다.');
       }
     }
@@ -130,13 +131,11 @@ function Feedback() {
             onChange={(e) => setQuestion(e.target.value)}
           ></textarea>
 
-          <button className="submit-button" onClick={handleSubmitQuestion}>
-            Submit
-          </button>
+          <button onClick={handleSubmitQuestion}>Submit</button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default Feedback;

@@ -9,11 +9,8 @@ interface NoteData {
 }
 
 const IncorrectNote: React.FC<{ data: NoteData }> = ({ data }) => {
-  console.log('Raw Markdown:', data.mdFile); // Markdown 원본 확인
-
   return (
     <div className="note-container">
-      <pre className="test">{data.mdFile}</pre>
       <ReactMarkdown className="note-content" remarkPlugins={[remarkGfm]}>
         {data.mdFile}
       </ReactMarkdown>
