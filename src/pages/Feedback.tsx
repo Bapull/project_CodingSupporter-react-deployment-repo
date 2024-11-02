@@ -112,6 +112,7 @@ const Feedback: React.FC = () => {
               Save Note
             </button>
           )}
+          <button className="search-mento-button">아직 찾지 못하셨나요?</button>
         </div>
         <div className="divider"></div>
         <div className="question-section">
@@ -131,7 +132,9 @@ const Feedback: React.FC = () => {
             onChange={(e) => setQuestion(e.target.value)}
           ></textarea>
 
-          <button onClick={handleSubmitQuestion}>Submit</button>
+          <button className="submit-button" onClick={handleSubmitQuestion}>
+            Submit
+          </button>
         </div>
       </div>
     </div>

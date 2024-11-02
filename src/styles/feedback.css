@@ -10,6 +10,11 @@
   margin: 5px;
   padding: 20px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 가운데 정렬 */
+  height: 100%;
+  position: relative;
 }
 
 .divider {
@@ -18,19 +23,17 @@
   height: 100%;
 }
 
-.question-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* 세로 가운데 정렬 */
-  height: 100%;
-  position: relative;
+.error-code,
+.error-code-input,
+.error-question,
+.error-question-input {
+  margin: 5px auto;
+  width: 85%;
 }
 
 .error-code-input,
 .error-question-input {
-  width: 95%;
-  margin-bottom: 20px;
-  padding: 10px;
+  margin-bottom: 40px;
   border-radius: 5px;
   resize: none;
   outline: none;
@@ -41,13 +44,26 @@
   overflow-y: scroll;
 }
 
-.error-code-input,
+.error-code-input {
+  height: 30vh;
+}
+
 .error-question-input {
   height: 10vh;
 }
 
+.save-button,
 .submit-button {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 5%;
+  right: 5%;
+}
+
+.search-mento-button {
+  border: none;
+  background-color: none;
+  color: #027ed7;
+  position: absolute;
+  bottom: 10px;
+  right: 4%;
 }
