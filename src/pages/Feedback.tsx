@@ -13,6 +13,14 @@ interface NoteData {
   mdFile: string;
 }
 
+const randomMessages = [
+  '성장의 기록을 남기고,<br />앞으로 나아가는 발판으로 삼으세요.',
+  '실수는 성공의 디딤돌입니다.<br />함께 해결해 나가요!',
+  '고민했던 흔적을 남기고,<br />더 나은 코드를 향해 나아가세요.',
+  '작은 실수가 모여 큰 성장이 됩니다.<br />함께 해결해요!',
+  '코드 여정에서 만난 문제들,<br />여기서 해결하며 경험으로 쌓아가세요.',
+];
+
 const Feedback: React.FC = () => {
   const [code, setCode] = useState('');
   const [question, setQuestion] = useState('');
@@ -44,6 +52,12 @@ const Feedback: React.FC = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  // 오답 노트가 없을 때 랜덤 메시지 반환
+  const getRandomMessage = () => {
+    const randomIndex = Math.floor(Math.random() * randomMessages.length);
+    return randomMessages[randomIndex];
+  };
 
   // POST 요청: 코드와 질문을 보내고 데이터 수신
   const handleSubmitQuestion = async () => {
@@ -105,14 +119,25 @@ const Feedback: React.FC = () => {
       <div className="container">
         <div className="incorrect-note-section">
           {/* 오답노트 메시지와 내용 표시 */}
-          {noteData && <IncorrectNote data={noteData} />}
-          {/* 오답노트 저장 버튼 */}
-          {noteData && (
-            <button className="save-button" onClick={handleSave}>
-              Save Note
-            </button>
+          {noteData ? (
+            <>
+              <IncorrectNote data={noteData} />
+              {/* 오답노트 저장 버튼 */}
+              <button className="save-button" onClick={handleSave}>
+                Save Note
+              </button>
+              <button className="search-mento-button">아직 찾지 못하셨나요?</button>
+            </>
+          ) : (
+            <div className="random-message-container">
+              <img
+                src="/video/Feedback-code-checking.gif"
+                alt="Feedback Code Checking GIF"
+                className="feedback-code-checking-gif"
+              />
+              <div className="random-message" dangerouslySetInnerHTML={{ __html: getRandomMessage() }} />
+            </div>
           )}
-          <button className="search-mento-button">아직 찾지 못하셨나요?</button>
         </div>
         <div className="divider"></div>
         <div className="question-section">

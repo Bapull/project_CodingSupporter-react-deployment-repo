@@ -11,7 +11,14 @@ interface NoteData {
 const IncorrectNote: React.FC<{ data: NoteData }> = ({ data }) => {
   return (
     <div className="note-container">
-      <ReactMarkdown className="note-content" remarkPlugins={[remarkGfm]}>
+      <ReactMarkdown
+        className="note-content"
+        remarkPlugins={[remarkGfm]}
+        components={{
+          h1: ({ node, ...props }) => <h1 style={{ fontWeight: 'bold' }} {...props} />,
+          h2: ({ node, ...props }) => <h2 style={{ fontWeight: 'bold' }} {...props} />,
+        }}
+      >
         {data.mdFile}
       </ReactMarkdown>
     </div>
@@ -19,3 +26,4 @@ const IncorrectNote: React.FC<{ data: NoteData }> = ({ data }) => {
 };
 
 export default IncorrectNote;
+// 입력 전 문ㄱ

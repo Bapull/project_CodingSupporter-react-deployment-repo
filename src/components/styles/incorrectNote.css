@@ -7,9 +7,24 @@
   border: 1px solid #ccc;
   overflow-y: auto; /* 세로 스크롤 추가 */
   overflow-x: hidden; /* 가로 스크롤 숨김 */
+
+  /* 스크롤바 제거 */
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
 }
 
 .note-content {
   white-space: pre-wrap; /* 줄바꿈을 유지 */
   word-wrap: break-word; /* 긴 단어를 줄바꿈 */
+}
+
+.note-content h1,
+.note-content h2 {
+  margin-bottom: 0;
+}
+
+.note-content pre {
+  border: 1px #010101;
+  margin-bottom: 10px;
 }

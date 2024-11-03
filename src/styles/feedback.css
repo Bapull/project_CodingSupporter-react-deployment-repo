@@ -17,6 +17,22 @@
   position: relative;
 }
 
+.random-message-container {
+  width: 100%;
+  margin: auto 15%;
+}
+
+.feedback-code-checking-gif {
+  width: 65%;
+  height: auto;
+}
+
+.random-message {
+  margin-left: 70px;
+  text-align: left;
+  font-size: 1.7rem;
+}
+
 .divider {
   width: 1px;
   background-color: #959fb6;
