@@ -46,6 +46,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            export VITE_API_URL=${{ secrets.EC2_IP }}
             cd ~/app
             docker-compose pull
             docker-compose up -d
