@@ -24,6 +24,6 @@ COPY --from=builder /app/package.json ./
 
 ENV VITE_API_URL=${VITE_API_URL}
 
-EXPOSE 5173
+EXPOSE 4173
 
 CMD ["npm", "run", "preview", "--", "--host"]
