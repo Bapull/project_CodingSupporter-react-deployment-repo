@@ -12,13 +12,23 @@ type User = {
 type GraphInfo = {
   [key:string]: number;
 }
+type Note = {
+  language:string
+  errorType:string
+  mdFile:string
+}
 function UserTest() {
   const baseUrl = 'https://localhost:3000'
 
   // input value를 가져오기위한 ref
   const nameRef = useRef<HTMLInputElement>(null)
   const lanRef = useRef<HTMLInputElement>(null)
-
+  const noteNameRef = useRef<HTMLInputElement>(null)
+  const [note, setNote] = useState<Note>({
+    language:'',
+    errorType:'',
+    mdFile:''
+  })
   const [user, setUser] = useState<User>({
     googleId:'',
     id:0,
@@ -151,6 +161,42 @@ function UserTest() {
       credentials:'include'
     })
   }
+  const generateIncorrectNote = () => {
+    fetch(`${baseUrl}/incorrect-note/generate`,{
+      method:'POST',
+      credentials:'include',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        code:`
+        #include <stdio.h>
+        int main() {
+        int a = 10;
+        printf(\"%f\",a);
+        return 0;}`,
+        error:"warning: format '%f' expects argument of type 'double', but argument 2 has type 'int' [-Wformat=]"
+      })
+    }).then(res=>res.json())
+    .then(data=>setNote(data.data))
+  }
+  const saveNote = () => {
+    fetch(`${baseUrl}/incorrect-note/save`,{
+      method:'POST',
+      credentials:'include',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(note)
+    }).then(res=>res.json())
+    .then(data=>console.log(data))
+  }
+  const getNote = () => {
+    fetch(`${baseUrl}/incorrect-note/s3?note-name=${noteNameRef.current?.value}`,{
+      credentials:'include'
+    }).then(res=>res.json())
+    .then(data=>console.log(data))
+  }
   return (
     <div className="user">
       <div className="container">
@@ -187,6 +233,12 @@ function UserTest() {
         <button onClick={folder}>폴더정보 불러오기</button>
         <div>---------------------------------</div>
         <button onClick={changePosition}>역할 변경</button>
+        <div>---------------------------------</div>
+        <button onClick={generateIncorrectNote}>gpt 오답노트 생성</button>
+        <button onClick={saveNote}>오답노트 저장</button>
+        <div>---------------------------------</div>
+        <input type="text" ref={noteNameRef} />
+        <button onClick={getNote}>오답노트 상세 불러오기</button>
       </div>
       
       </div>
