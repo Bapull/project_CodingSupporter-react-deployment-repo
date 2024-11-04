@@ -73,7 +73,7 @@ const Barchart = () => {
         padding={0.3}
         /**
          * chart 색상 */
-        colors={{ scheme: "nivo" }} // 커스터하여 사용할 때
+        colors={{ scheme: "blues" }} // 커스터하여 사용할 때
         // colors={{ scheme: 'nivo' }} // nivo에서 제공해주는 색상 조합 사용할 때
         /**
          * color 적용 방식 */
