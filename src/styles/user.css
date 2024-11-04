@@ -52,7 +52,9 @@
   text-shadow: -0.7px 0px #f0f3fa, 0px 0.7px #f0f3fa, 0.7px 0px #f0f3fa,
     0px -0.7px #f0f3fa;
   display: inline-block;
-  margin-right: 50%;
+  margin-right: 15%;
+  min-width: 50%;
+  font-size: 1.5em;
 }
 
 .user .content-left-middle {

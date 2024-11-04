@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { setUser, clearUser } from "../redux/userSlice";
+import Barchart from "../components/charts/Barchart";
+import Piechart from "../components/charts/Piechart";
+import Calendar from "../components/charts/Calendar";
 import "../styles/user.css";
 
 type User = {
@@ -51,6 +54,9 @@ function User() {
       {isLoggedIn ? (
         <div className="wrapper">
           <div className="user-content-left">
+            <button onClick={logout} className="logout-button">
+              로그아웃
+            </button>
             <div className="content-left-top">
               <img
                 src={user?.profilePicture}
@@ -78,9 +84,9 @@ function User() {
             </div>
           </div>
           <div className="user-content-right">
-            <button onClick={logout} className="logout-button">
-              로그아웃
-            </button>
+            <Barchart />
+            <Piechart />
+            <Calendar />
           </div>
         </div>
       ) : (
