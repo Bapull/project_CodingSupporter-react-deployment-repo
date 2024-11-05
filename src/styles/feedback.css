@@ -1,0 +1,85 @@
+.feedback .container {
+  display: flex;
+  overflow: hidden;
+}
+
+.incorrect-note-section,
+.question-section {
+  flex: 1;
+  width: 50%;
+  margin: 5px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 가운데 정렬 */
+  height: 100%;
+  position: relative;
+}
+
+.random-message-container {
+  width: 100%;
+  margin: auto 15%;
+}
+
+.feedback-code-checking-gif {
+  width: 65%;
+  height: auto;
+}
+
+.random-message {
+  margin-left: 70px;
+  text-align: left;
+  font-size: 1.7rem;
+}
+
+.divider {
+  width: 1px;
+  background-color: #959fb6;
+  height: 100%;
+}
+
+.error-code,
+.error-code-input,
+.error-question,
+.error-question-input {
+  margin: 5px auto;
+  width: 85%;
+}
+
+.error-code-input,
+.error-question-input {
+  margin-bottom: 40px;
+  border-radius: 5px;
+  resize: none;
+  outline: none;
+
+  /* 스크롤바 제거 */
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+
+.error-code-input {
+  height: 30vh;
+}
+
+.error-question-input {
+  height: 10vh;
+}
+
+.save-button,
+.submit-button {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+
+.search-mento-button {
+  border: none;
+  background-color: none;
+  color: #027ed7;
+  position: absolute;
+  bottom: 10px;
+  right: 4%;
+}
