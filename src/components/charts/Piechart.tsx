@@ -66,7 +66,7 @@ const Piechart = () => {
         cornerRadius={0}
         /**
          * chart 색상 */
-        colors={{ scheme: "blues" }} // 커스터하여 사용할 때
+        colors={["#6c92bf", "#8ba7cc", "#a8bcd8", "#c5d2e5"]} // 커스터하여 사용할 때
         // colors={{ scheme: 'nivo' }} // nivo에서 제공해주는 색상 조합 사용할 때
         /**
          * pad border 두께 설정 */

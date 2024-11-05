@@ -86,6 +86,7 @@ function User() {
           <div className="user-content-right">
             <Barchart />
             <Piechart />
+            <p className="attendance-title">Attendance</p>
             <Calendar />
           </div>
         </div>

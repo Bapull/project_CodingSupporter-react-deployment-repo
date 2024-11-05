@@ -46,9 +46,10 @@ const Barchart = () => {
   return (
     <div
       style={{
-        width: "50%",
+        width: "45%",
         height: "50%",
         margin: "0 auto",
+        marginLeft: "5%",
         display: "inline-block",
       }}
     >
@@ -59,18 +60,8 @@ const Barchart = () => {
             {
               label: "Error Information",
               data: [errors.logical, errors.syntax, errors.runtime, errors.etc],
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-              ],
-              borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-              ],
+              backgroundColor: ["#6c92bf", "#8ba7cc", "#a8bcd8", "#c5d2e5"],
+              borderColor: ["#c5d2e5", "#a8bcd8", "#8ba7cc", "#6c92bf"],
               borderWidth: 1,
             },
           ],
