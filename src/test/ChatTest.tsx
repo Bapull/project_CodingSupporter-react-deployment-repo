@@ -48,7 +48,7 @@ const ChatTest = () => {
     socket.emit('leave_room',room)
   }
   return (
-    <div>
+    <div style={{backgroundColor:'white'}}>
       <h1>현재 방: {room}</h1>
       <button onClick={()=>handleJoinRoom('방1')}>방1 참여하기</button>
       <button onClick={()=>handleJoinRoom('방2')}>방2 참여하기</button>

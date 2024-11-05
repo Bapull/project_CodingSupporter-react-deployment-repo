@@ -197,6 +197,12 @@ function UserTest() {
     }).then(res=>res.json())
     .then(data=>console.log(data))
   }
+  const getMento = () => {
+    fetch(`${baseUrl}/user/mento?language=Python`,{
+      credentials:'include'
+    }).then(res=>res.json())
+    .then((data)=>{console.log(data)})
+  }
   return (
     <div className="user">
       <div className="container">
@@ -239,6 +245,8 @@ function UserTest() {
         <div>---------------------------------</div>
         <input type="text" ref={noteNameRef} />
         <button onClick={getNote}>오답노트 상세 불러오기</button>
+        <div>---------------------------------</div>
+        <button onClick={getMento}>멘토 정보 호출</button>
       </div>
       
       </div>
