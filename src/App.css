@@ -8,7 +8,7 @@ body {
   border-radius: 50px;
   width: 80%;
   padding: 1%;
-  max-width: 1223px;
+  min-width: 1223px;
   height: 78vh;
   margin: 0 auto;
   background-color: #f0f3fa;

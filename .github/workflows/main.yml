@@ -3,9 +3,9 @@ name: Docker Build and Deploy
 on:
   pull_request:
     types: [closed]
-    branches: [main]  
+    branches: [main]
   workflow_dispatch:
-   
+
 jobs:
   build-and-deploy:
     name: Build, Push and Deploy
@@ -32,8 +32,6 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          build-args: |
-            VITE_API_URL=${{ secrets.EC2_IP }}
           tags: |
             hwangjungseok/react-frontend:latest
           cache-from: type=gha
@@ -42,12 +40,11 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.EC2_IP }}  
+          host: ${{ secrets.EC2_IP }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            docker stop esg-web-react || true
             cd ~/app
-            docker compose pull
-            docker compose up -d
+            docker-compose pull
+            docker-compose up -d
             docker image prune -f
