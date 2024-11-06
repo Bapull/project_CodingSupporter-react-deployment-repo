@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 import { Socket,io } from 'socket.io-client';
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 type Message = {
   room:string;
@@ -7,10 +10,24 @@ type Message = {
   sender:string;
 }
 const ChatTest = () => {
+  const {room}= useParams()
   const [socket,setSocket] = useState<Socket>()
   const [message,setMessage] = useState<string>('')
   const [messages,setMessages] = useState<Message[]>([])
-  const [room,setRoom] = useState<string>('')
+
+  const user = useSelector((state: RootState) => state.user.user);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+
+  
+  const joinRoom = ()=>{
+    if(!socket) return
+    socket.emit('join_room',{
+      room:room,
+      sender:user?.name,
+      message:''
+    })
+  }
+  
   useEffect(()=>{
     setSocket(io('https://localhost:3000',{
       transports:['websocket']
@@ -23,41 +40,32 @@ const ChatTest = () => {
 
   useEffect(()=>{
     if(!socket) return
-    socket.on('join_room',(message)=>{
-      setRoom(message)
-    })
-    socket.on('leave_room',(message)=>{
-      setRoom('')
-    })
     socket.on('message',(message)=>{
       setMessages((prev)=>[...prev,message])
     })
+    joinRoom()
   },[socket])
 
   const handleSendMessage = ()=>{
     if(!socket) return
-    socket.emit('message',{room,message,sender:''})
+    socket.emit('message',{room,message,sender:user?.name})
     setMessage('')
   }
-  const handleJoinRoom = (room:string)=>{
-    if(!socket) return
-    socket.emit('join_room',room)
-  }
+  
   const handleLeaveRoom = ()=>{
     if(!socket) return
     socket.emit('leave_room',room)
+    window.location.href = '/'
   }
   return (
     <div style={{backgroundColor:'white'}}>
       <h1>현재 방: {room}</h1>
-      <button onClick={()=>handleJoinRoom('방1')}>방1 참여하기</button>
-      <button onClick={()=>handleJoinRoom('방2')}>방2 참여하기</button>
       <button onClick={handleLeaveRoom}>방 나가기</button>
       <input type="text" value={message} onChange={(e)=>setMessage(e.target.value)} />
       <button onClick={handleSendMessage}>메시지 보내기</button>
       <ul>
         {messages.map((message,index)=>(
-          <li key={index}>{message.message}</li>
+          <li key={index}>{message.sender}: {message.message}</li>
         ))}
       </ul>
     </div>
