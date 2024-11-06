@@ -16,6 +16,9 @@ import NavBar from './components/Navbar';
 
 // {테스트 페이지}
 import UserTest from './test/UserTest';
+import ChatTest from "./test/ChatTest";
+import MentoTest from "./test/MentoTest";
+import Notification from "./test/Notification";
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function App() {
           <Route path="/setting" element={<Setting />} />
           {/* {테스트 페이지} */}
           <Route path="/user-test" element={<UserTest />} />
+          <Route path="/chat-test/:room" element={<ChatTest />} />
+          <Route path="/mento-test" element={<MentoTest/>} />
+          <Route path="/noti-test" element={<Notification/>}/>
         </Routes>
       </Router>
     </Provider>

@@ -197,6 +197,7 @@ function UserTest() {
     }).then(res=>res.json())
     .then(data=>console.log(data))
   }
+  
   return (
     <div className="user">
       <div className="container">
@@ -239,6 +240,8 @@ function UserTest() {
         <div>---------------------------------</div>
         <input type="text" ref={noteNameRef} />
         <button onClick={getNote}>오답노트 상세 불러오기</button>
+        <div>---------------------------------</div>
+        
       </div>
       
       </div>
