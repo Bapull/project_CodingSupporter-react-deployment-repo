@@ -32,8 +32,6 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          build-args: |
-            VITE_API_URL=${{ secrets.EC2_IP }}
           tags: |
             hwangjungseok/react-frontend:latest
           cache-from: type=gha
@@ -46,7 +44,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            export VITE_API_URL=${{ secrets.EC2_IP }}
             cd ~/app
             docker-compose pull
             docker-compose up -d
