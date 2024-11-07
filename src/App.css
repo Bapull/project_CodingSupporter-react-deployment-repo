@@ -5,14 +5,16 @@ body {
 }
 
 .container {
+  box-sizing: border-box;
   border-radius: 50px;
   width: 80%;
   padding: 1%;
-  min-width: 1223px;
+  min-width: 600px;
   height: 78vh;
   margin: 0 auto;
+  margin-top: 2%;
   background-color: #f0f3fa;
-  transition: cubic-bezier(1, 0, 0, 1);
+  transition: cubic-bezier(1, 0, 0, 1) 1s;
 }
 
 .w-50 {

@@ -7,9 +7,9 @@
   display: flex;
   border-radius: 50px;
   width: 80%;
-  max-width: 1223px;
   height: 78vh;
   margin: 0 auto;
+  margin-top: 2%;
   background-color: #f0f3fa;
   transition: cubic-bezier(1, 0, 0, 1);
 }
