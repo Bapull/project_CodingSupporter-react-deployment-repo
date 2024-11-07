@@ -1,4 +1,4 @@
-FROM node:18-alpine AS builder
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ RUN npm install
 COPY . .
 
 # TypeScript 에러를 무시하고 빌드
-RUN npm run build || (echo "Build failed" && exit 1)
+RUN npm run build
 
 FROM node:18-alpine
 
