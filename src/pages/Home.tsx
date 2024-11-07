@@ -1,5 +1,3 @@
-
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/home.css";
 import { useSelector } from "react-redux";
@@ -66,12 +64,11 @@ const Home: React.FC = () => {
   };
 
   const handleLoginClick = () => {
-    navigate("/login");
+    navigate("/first-user");
   };
 
   return (
     <div className="container">
-
       {isLoggedIn ? (
         <h3 className="login-button" style={{ color: "black" }}>
           안녕하세요. {user?.name}님!
@@ -90,8 +87,10 @@ const Home: React.FC = () => {
           AI와 멘토가 함께하는 새로운 학습 경험을 시작해보세요!
         </h1>
         <p className="home-content-text">
-          우리의 목표는 초보자도 편하게 코딩을 배울 수 있는 환경을 제공하는 것입니다 <br />
-          AI와 멘토가 제공하는 도움을 통해, 직접 문제를 해결하며 성장할 수 있습니다
+          우리의 목표는 초보자도 편하게 코딩을 배울 수 있는 환경을 제공하는
+          것입니다 <br />
+          AI와 멘토가 제공하는 도움을 통해, 직접 문제를 해결하며 성장할 수
+          있습니다
           <br />
           즉각적인 피드백, 깊이 있는 조언을 통해 학습 방향을 잡아줍니다
           <br />

@@ -1,5 +1,5 @@
 import { ResponsiveCalendar } from "@nivo/calendar";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Calendar = () => {
   const [attendance, setAttendance] = useState([]);

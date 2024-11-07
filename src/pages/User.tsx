@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { setUser, clearUser } from "../redux/userSlice";
@@ -47,6 +47,25 @@ function User() {
     });
     window.location.replace("/"); // 홈 화면으로 사라져랏 !
   };
+
+  // 출석체크
+  useEffect(() => {
+    const fetchPostAttendance = async () => {
+      try {
+        const response = await fetch(`${baseUrl}/user/attendance`, {
+          method: "POST",
+          credentials: "include",
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+      } catch (error) {
+        console.log("Error fetching data:", error);
+      }
+    };
+
+    fetchPostAttendance();
+  }, [baseUrl]);
 
   return (
     <div className="user">

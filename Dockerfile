@@ -1,10 +1,11 @@
-FROM node:18-alpine AS builder
+FROM node:18 AS builder
 
 WORKDIR /app
 
 COPY tsconfig*.json ./
 
 COPY package*.json ./
+
 RUN npm install
 
 COPY . .
