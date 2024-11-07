@@ -64,7 +64,7 @@ const Home: React.FC = () => {
   };
 
   const handleLoginClick = () => {
-    navigate("/first-user");
+    navigate("/login");
   };
 
   return (

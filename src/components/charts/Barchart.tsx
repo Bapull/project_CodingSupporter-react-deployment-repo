@@ -25,7 +25,7 @@ const Barchart = () => {
         }
         const data = await response.json();
 
-        console.log("Fetched data:", data.errorInfo);
+        // console.log("Fetched data:", data.errorInfo);
 
         // 데이터를 올바르게 매핑하여 설정
         const mappedErrors = {
@@ -35,7 +35,7 @@ const Barchart = () => {
           EtcError: data.errorInfo[ErrorType.EtcError] || 0,
         };
 
-        console.log("Mapped errors:", mappedErrors);
+        // console.log("Mapped errors:", mappedErrors);
         setErrors(mappedErrors);
       } catch (error) {
         console.log("Error fetching data:", error);

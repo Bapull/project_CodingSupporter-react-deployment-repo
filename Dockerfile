@@ -6,12 +6,10 @@ COPY tsconfig*.json ./
 
 COPY package*.json ./
 
+RUN rm -rf node_modules
 RUN npm install
 
 COPY . .
-
-ARG VITE_API_URL
-ENV VITE_API_URL=${VITE_API_URL}
 
 RUN npm run build || (echo "Build failed" && exit 1)
 
@@ -23,8 +21,7 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./
 
-ENV VITE_API_URL=${VITE_API_URL}
 
-EXPOSE 4173
+EXPOSE 5173/tcp
 
 CMD ["npm", "run", "preview", "--", "--host"]
