@@ -11,8 +11,8 @@ RUN npm install
 # 2. 전체 소스 파일 복사
 COPY . .
 
-# 3. TypeScript 빌드: 사용되지 않는 import 및 변수 포함하여 빌드가 완료되도록 설정
-RUN npx tsc --noEmit false && npm run build
+# 3. 빌드 수행: TypeScript와 Vite 빌드 프로세스를 한 번에 실행
+RUN npm run build
 
 # 실행 스테이지
 FROM node:18-alpine
@@ -25,8 +25,8 @@ COPY --from=build /app/dist ./dist
 COPY --from=build /app/public ./public
 COPY --from=build /app/package.json ./
 
-# 6. 포트 설정
+# 5. 포트 설정
 EXPOSE 4173
 
-# 7. 애플리케이션 시작 명령어
+# 6. 애플리케이션 시작 명령어
 CMD ["npm", "run", "preview", "--", "--host"]
