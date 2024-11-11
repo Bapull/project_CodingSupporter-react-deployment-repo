@@ -16,7 +16,14 @@ const ChatTest = () => {
   const [messages,setMessages] = useState<Message[]>([])
 
   const user = useSelector((state: RootState) => state.user.user);
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  
+  useEffect(()=>{
+    // 기존에 저장된 채팅 내역 불러오기
+    fetch(`https://localhost:3000/message/${room}`)
+    .then((res)=>res.json())
+    .then(data=>setMessages(data))
+
+  },[room])
 
   
   const joinRoom = ()=>{
