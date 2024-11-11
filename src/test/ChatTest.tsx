@@ -19,9 +19,11 @@ const ChatTest = () => {
   
   useEffect(()=>{
     // 기존에 저장된 채팅 내역 불러오기
-    fetch(`https://localhost:3000/message/${room}`)
+    fetch(`https://localhost:3000/message/${room}`,{
+      credentials:'include'
+    })
     .then((res)=>res.json())
-    .then(data=>setMessages(data))
+    .then(data=>setMessages(data.data))
 
   },[room])
 
@@ -37,9 +39,10 @@ const ChatTest = () => {
   
   useEffect(()=>{
     setSocket(io('https://localhost:3000',{
-      transports:['websocket']
+      transports:['websocket'],
+      withCredentials:true
     }))
-
+    
     return ()=>{
       if(socket) socket.disconnect()
     }

@@ -12,7 +12,7 @@ type Mento={
 const MentoDetail = (mento:Mento) => {
   const baseUrl = 'https://localhost:3000'
   const requestChat = () => {
-    fetch(`${baseUrl}/notification/chat-request?id=${mento.id}`,{
+    fetch(`${baseUrl}/chat-room/chat-request?id=${mento.id}`,{
       credentials:'include',
       method:'POST'
     })
