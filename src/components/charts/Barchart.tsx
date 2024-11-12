@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 
 const Barchart = () => {
-  const baseUrl = "https://localhost:3000";
+  const baseUrl = import.meta.env.VITE_BACK_URL;
   const [errors, setErrors] = useState({
     logical: 0,
     syntax: 0,
