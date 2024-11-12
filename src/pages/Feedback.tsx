@@ -28,7 +28,7 @@ const Feedback: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const baseUrl = 'https://localhost:3000';
+  const baseUrl = import.meta.env.VITE_BACK_URL;
 
   // 유저 인증 및 로그인 상태 확인
   useEffect(() => {

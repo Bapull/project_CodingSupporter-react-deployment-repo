@@ -1,9 +1,9 @@
 import { ResponsiveCalendar } from "@nivo/calendar";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Calendar = () => {
   const [attendance, setAttendance] = useState([]);
-  const baseUrl = "https://localhost:3000";
+  const baseUrl = import.meta.env.VITE_BACK_URL;
   const lastYear = new Date().getFullYear() - 1;
   const thisYear = new Date().getFullYear();
 

@@ -1,11 +1,12 @@
 import "../styles/login.css";
 
 function Login() {
+  const baseUrl = import.meta.env.VITE_BACK_URL;
   return (
     <div className="login">
       <div className="container">
         {/* 로그인 버튼 클릭 시 구글 로그인 페이지로 이동 */}
-        <a href="https://localhost:3000/auth/google/login">
+        <a href={`${baseUrl}/auth/google/login`}>
           <img src="./images/web_neutral_rd_ctn.svg" className="google-logo" />
         </a>
         {/* <div className="w-100">

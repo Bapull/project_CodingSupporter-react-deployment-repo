@@ -20,7 +20,7 @@ function User() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
-  const baseUrl = "https://localhost:3000";
+  const baseUrl = import.meta.env.VITE_BACK_URL;
 
   // 유저 정보 불러오기
   useEffect(() => {
@@ -43,7 +43,7 @@ function User() {
       credentials: "include",
     }).then(() => {
       dispatch(clearUser()); // 유저 정보를 dispatch를 이용해서 리덕스 스토어에서 삭제
-      window.location.href = "https://localhost:5173";
+      window.location.href = import.meta.env.VITE_FRONT_URL;
     });
     window.location.replace("/"); // 홈 화면으로 사라져랏 !
   };
@@ -91,7 +91,7 @@ function User() {
           </div>
         </div>
       ) : (
-        <a href="https://localhost:3000/auth/google/login">
+        <a href={`${baseUrl}/auth/google/login`}>
           <img src="./images/web_neutral_rd_ctn.svg" className="google-logo" />
         </a>
       )}
