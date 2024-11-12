@@ -18,7 +18,7 @@ import NavBar from './components/Navbar';
 import UserTest from './test/UserTest';
 import ChatTest from "./test/ChatTest";
 import MentoTest from "./test/MentoTest";
-import Notification from "./test/Notification";
+import ChatRoom from "./test/ChatRoom";
 
 function App() {
   return (
@@ -39,7 +39,7 @@ function App() {
           <Route path="/user-test" element={<UserTest />} />
           <Route path="/chat-test/:room" element={<ChatTest />} />
           <Route path="/mento-test" element={<MentoTest/>} />
-          <Route path="/noti-test" element={<Notification/>}/>
+          <Route path="/chatroom-test" element={<ChatRoom/>}/>
         </Routes>
       </Router>
     </Provider>

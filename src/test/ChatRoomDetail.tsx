@@ -1,30 +1,28 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-type Notification = {
+type ChatRoom = {
   id:number,
   receiver:string,
-  sender:string,
-  content:string
+  sender:string
 }
 type DetailProps = {
-  noti:Notification,
+  chatroom:ChatRoom,
   id:number
 }
-const NotificationDetail: React.FC<DetailProps> = ({noti, id}) => {
+const ChatRoomDetail: React.FC<DetailProps> = ({chatroom, id}) => {
   console.log(id)
   const nav = useNavigate()
   const joinChat = () => {
-    nav(`/chat-test/${noti.id}`)
+    nav(`/chat-test/${chatroom.id}`)
   }
-  if(noti.sender === `${id}`){
+  if(chatroom.sender === `${id}`){
     return (
       <div style={{backgroundColor:'gray', border:'1px solid'}}>
         <div>내가 보낸 알림</div>
-        <div>item.id: {noti.id}</div>
-        <div>item.receiver: {noti.receiver}</div>
-        <div>item.sender: {noti.sender}</div>
-        <div>item.content: {noti.content}</div>
+        <div>item.id: {chatroom.id}</div>
+        <div>item.receiver: {chatroom.receiver}</div>
+        <div>item.sender: {chatroom.sender}</div>
         <button onClick={joinChat}>채팅 참가</button>
       </div>
     )
@@ -32,14 +30,13 @@ const NotificationDetail: React.FC<DetailProps> = ({noti, id}) => {
     return (
       <div style={{backgroundColor:'orange', border:'1px solid'}}>
         <div>받은 알람</div>
-        <div>item.id: {noti.id}</div>
-        <div>item.receiver: {noti.receiver}</div>
-        <div>item.sender: {noti.sender}</div>
-        <div>item.content: {noti.content}</div>
+        <div>item.id: {chatroom.id}</div>
+        <div>item.receiver: {chatroom.receiver}</div>
+        <div>item.sender: {chatroom.sender}</div>
         <button onClick={joinChat}>채팅 참가</button>
       </div>
     )
   }
 }
 
-export default NotificationDetail
+export default ChatRoomDetail
