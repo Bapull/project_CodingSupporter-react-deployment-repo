@@ -68,14 +68,18 @@ const ChatTest = () => {
       window.location.href = '/'
       return
     }
-    socket.emit('leave_room',room)
+    socket.emit('leave_room',{
+      room:room,
+      sender:user?.name,
+      message:''
+    })
     socket.disconnect()
     setTimeout(() => {
       // 위에 emit이랑 disconnect가 비동기 작업이지만, promise객체를 반환하지 않아서,
       // await을 사용할 수 없다. 그래서 window.location.href를 비동기로 만들어서 
       // 소켓을 끊기 전에 메인으로 가는 상황을 방지했다.
       window.location.href = '/'  
-    }, 0);
+    }, 100);
     
   }
   return (
