@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Socket,io } from 'socket.io-client';
 import { useSelector } from "react-redux";
@@ -18,6 +18,8 @@ const ChatTest = () => {
   const user = useSelector((state: RootState) => state.user.user);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
+  const baseUrl = import.meta.env.VITE_BACK_URL;
+
   
   const joinRoom = ()=>{
     if(!socket) return
@@ -29,7 +31,7 @@ const ChatTest = () => {
   }
   
   useEffect(()=>{
-    setSocket(io('https://localhost:3000',{
+    setSocket(io(`${baseUrl}`,{
       transports:['websocket']
     }))
 

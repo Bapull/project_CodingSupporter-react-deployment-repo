@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NotificationDetail from './NotificationDetail'
 type Notification = {
@@ -9,7 +9,7 @@ type Notification = {
 }
 
 const Notification = () => {
-  const baseUrl = 'https://localhost:3000'
+  const baseUrl = import.meta.env.VITE_BACK_URL;
   const [notification, setNotification] = useState<Notification[]>([])
   const [id, setId] = useState(0)
   const nav = useNavigate()

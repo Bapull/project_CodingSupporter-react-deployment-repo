@@ -1,5 +1,3 @@
-import React from 'react'
-
 type Mento={
   id:string,
   name:string,
@@ -10,7 +8,7 @@ type Mento={
 }
 
 const MentoDetail = (mento:Mento) => {
-  const baseUrl = 'https://localhost:3000'
+  const baseUrl = import.meta.env.VITE_BACK_URL;
   const requestChat = () => {
     fetch(`${baseUrl}/notification/chat-request?id=${mento.id}`,{
       credentials:'include',
