@@ -20,34 +20,70 @@ function User() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const reload = import.meta.env.VITE_FRONT_URL;
   const baseUrl = import.meta.env.VITE_BACK_URL;
 
-  // 유저 정보 불러오기
   useEffect(() => {
-    fetch(`${baseUrl}/user/info`, {
-      method: "GET",
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
+    // 유저 정보 불러오기
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch(`${baseUrl}/user/info`, {
+          method: "GET",
+          credentials: "include",
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
         if (data.info) {
           dispatch(setUser(data.info)); // 유저 정보를 dispatch를 이용해서 리덕스 스토어에 저장
         }
-      });
+        if (data.info.position === 0 && data.info.useLanguage === "[]") {
+          // 역할 0 && 사용언어 없음일 시 처음 유저라고 판단
+          window.location.href = `${reload}/first-user`;
+        }
+
+        setUser(data.info);
+      } catch (error) {
+        console.log("Error fetching data:", error);
+      }
+    };
+
+    // 출석 체크
+    const fetchPostAttendance = async () => {
+      try {
+        const response = await fetch(`${baseUrl}/user/attendance`, {
+          method: "POST",
+          credentials: "include",
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+      } catch (error) {
+        console.log("Error fetching data:", error);
+      }
+    };
+
+    fetchUserInfo();
+    fetchPostAttendance();
   }, [dispatch]);
 
-  // 로그아웃
-  const logout = async () => {
-    const response = await fetch(`${baseUrl}/auth/logout`, {
-      method: "GET",
-      credentials: "include",
-    })
-    if(response.ok){
-      dispatch(clearUser());// 유저 정보를 dispatch를 이용해서 리덕스 스토어에서 삭제
-      window.location.href = import.meta.env.VITE_FRONT_URL;
+  const fetchLogout = async () => {
+    try {
+      const response = await fetch(`${baseUrl}/auth/logout`, {
+        method: "GET",
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      dispatch(clearUser());
+      window.location.href = reload;
+    } catch (error) {
+      console.log("Error fetching data:", error);
     }
-       
-  };
 
   return (
     <div className="user">
@@ -55,7 +91,7 @@ function User() {
       {isLoggedIn ? (
         <div className="wrapper">
           <div className="user-content-left">
-            <button onClick={logout} className="logout-button">
+            <button onClick={fetchLogout} className="logout-button">
               로그아웃
             </button>
             <div className="content-left-top">

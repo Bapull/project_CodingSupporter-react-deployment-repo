@@ -19,6 +19,7 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+
 # 4. 빌드 결과물 및 종속성 복사
 COPY --from=build /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist

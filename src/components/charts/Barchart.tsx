@@ -2,6 +2,13 @@ import { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 
+const ErrorType = {
+  LogicalError: "1",
+  SyntaxError: "2",
+  RuntimeError: "3",
+  EtcError: "4",
+};
+
 const Barchart = () => {
   const baseUrl = import.meta.env.VITE_BACK_URL;
   const [errors, setErrors] = useState({
@@ -27,10 +34,10 @@ const Barchart = () => {
 
         // 데이터를 올바르게 매핑하여 설정
         const mappedErrors = {
-          logical: data.errorInfo["1"] || 0,
-          syntax: data.errorInfo["2"] || 0,
-          runtime: data.errorInfo["3"] || 0,
-          etc: data.errorInfo["4"] || 0,
+          LogicalError: data.errorInfo[ErrorType.LogicalError] || 0,
+          SyntaxError: data.errorInfo[ErrorType.SyntaxError] || 0,
+          RuntimeError: data.errorInfo[ErrorType.RuntimeError] || 0,
+          EtcError: data.errorInfo[ErrorType.EtcError] || 0,
         };
 
         // console.log("Mapped errors:", mappedErrors);
@@ -59,7 +66,12 @@ const Barchart = () => {
           datasets: [
             {
               label: "Error Information",
-              data: [errors.logical, errors.syntax, errors.runtime, errors.etc],
+              data: [
+                errors.LogicalError,
+                errors.SyntaxError,
+                errors.RuntimeError,
+                errors.EtcError,
+              ],
               backgroundColor: ["#6c92bf", "#8ba7cc", "#a8bcd8", "#c5d2e5"],
               borderColor: ["#c5d2e5", "#a8bcd8", "#8ba7cc", "#6c92bf"],
               borderWidth: 1,
