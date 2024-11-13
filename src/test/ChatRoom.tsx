@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import ChatRoomDetail from './ChatRoomDetail'
 type ChatRoom = {
   id:number,
@@ -8,10 +7,9 @@ type ChatRoom = {
 }
 
 const ChatRoom = () => {
-  const baseUrl = 'https://localhost:3000'
+  const baseUrl = import.meta.env.VITE_BACK_URL;
   const [chatRoom, setChatRoom] = useState<ChatRoom[]>([])
   const [id, setId] = useState(0)
-  const nav = useNavigate()
   const getChatRoom = () => {
     fetch(`${baseUrl}/chat-room`,{
       credentials:'include'

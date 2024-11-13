@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Socket,io } from 'socket.io-client';
 import { useSelector } from "react-redux";
@@ -16,10 +16,12 @@ const ChatTest = () => {
   const [messages,setMessages] = useState<Message[]>([])
 
   const user = useSelector((state: RootState) => state.user.user);
+
+  const baseUrl = import.meta.env.VITE_BACK_URL;
   
   useEffect(()=>{
     // 기존에 저장된 채팅 내역 불러오기
-    fetch(`https://localhost:3000/message/${room}`,{
+    fetch(`${baseUrl}/message/${room}`,{
       credentials:'include'
     })
     .then((res)=>res.json())
@@ -38,7 +40,7 @@ const ChatTest = () => {
   }
   
   useEffect(()=>{
-    setSocket(io('https://localhost:3000',{
+    setSocket(io(`${baseUrl}`,{
       transports:['websocket'],
       withCredentials:true
     }))
