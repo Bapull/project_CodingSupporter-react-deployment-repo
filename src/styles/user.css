@@ -48,8 +48,7 @@
 }
 
 .user .profile-name {
-  text-shadow: -0.7px 0px #f0f3fa, 0px 0.7px #f0f3fa, 0.7px 0px #f0f3fa,
-    0px -0.7px #f0f3fa;
+  text-shadow: -0.7px 0px #f0f3fa, 0px 0.7px #f0f3fa, 0.7px 0px #f0f3fa, 0px -0.7px #f0f3fa;
   display: inline-block;
   margin-right: 15%;
   min-width: 50%;
@@ -63,8 +62,7 @@
 }
 
 .user .profile-part {
-  text-shadow: -1px 0px #f0f3fa, 0px 1px #f0f3fa, 1px 0px #f0f3fa,
-    0px -1px #f0f3fa;
+  text-shadow: -1px 0px #f0f3fa, 0px 1px #f0f3fa, 1px 0px #f0f3fa, 0px -1px #f0f3fa;
   font-weight: bold;
   font-size: 1.5em;
   margin: 0 auto;

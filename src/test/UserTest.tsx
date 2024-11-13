@@ -18,7 +18,7 @@ type Note = {
   mdFile:string
 }
 function UserTest() {
-  const baseUrl = 'https://localhost:3000'
+  const baseUrl = import.meta.env.VITE_BACK_URL;
 
   // input value를 가져오기위한 ref
   const nameRef = useRef<HTMLInputElement>(null)
@@ -57,7 +57,7 @@ function UserTest() {
     fetch(`${baseUrl}/auth/logout`,{
       method:"GET",
       credentials:'include'
-    }).then(()=>{window.location.href='https://localhost:5173'})
+    }).then(()=>{window.location.href=import.meta.env.VITE_FRONT_URL})
   }
   // 출석체크
   const check = () => {
@@ -197,6 +197,7 @@ function UserTest() {
     }).then(res=>res.json())
     .then(data=>console.log(data))
   }
+  
   return (
     <div className="user">
       <div className="container">
@@ -239,6 +240,8 @@ function UserTest() {
         <div>---------------------------------</div>
         <input type="text" ref={noteNameRef} />
         <button onClick={getNote}>오답노트 상세 불러오기</button>
+        <div>---------------------------------</div>
+        
       </div>
       
       </div>

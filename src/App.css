@@ -12,6 +12,7 @@ body {
   min-width: 600px;
   height: 78vh;
   margin: 0 auto;
+  margin-top: 2%;
   background-color: #f0f3fa;
   transition: cubic-bezier(1, 0, 0, 1) 1s;
 }

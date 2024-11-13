@@ -10,8 +10,13 @@ const ErrorType = {
 };
 
 const Barchart = () => {
-  const baseUrl = "https://localhost:3000";
-  const [errors, setErrors] = useState(ErrorType);
+  const baseUrl = import.meta.env.VITE_BACK_URL;
+  const [errors, setErrors] = useState({
+    logical: 0,
+    syntax: 0,
+    runtime: 0,
+    etc: 0,
+  });
 
   useEffect(() => {
     const fetchData = async () => {

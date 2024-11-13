@@ -31,3 +31,5 @@ mkcert
 
 # #dockerfile
 # Dockerfile
+
+.env

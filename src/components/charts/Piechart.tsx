@@ -8,7 +8,7 @@ interface GraphData {
 
 const Piechart = () => {
   const [graphInfo, setGraphInfo] = useState<GraphData[]>([]);
-  const baseUrl = "https://localhost:3000";
+  const baseUrl = import.meta.env.VITE_BACK_URL;
 
   // 그래프 정보 호출(언어별로 몇 개의 오답노트가 있는지)
   useEffect(() => {

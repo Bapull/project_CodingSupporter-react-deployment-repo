@@ -20,8 +20,8 @@ function User() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
-  const baseUrl = "https://localhost:3000";
-  const reload = "https://localhost:5173";
+  const reload = import.meta.env.VITE_FRONT_URL;
+  const baseUrl = import.meta.env.VITE_BACK_URL;
 
   useEffect(() => {
     // 유저 정보 불러오기
@@ -68,7 +68,6 @@ function User() {
     fetchPostAttendance();
   }, [dispatch]);
 
-  // 로그아웃
   const fetchLogout = async () => {
     try {
       const response = await fetch(`${baseUrl}/auth/logout`, {
@@ -85,7 +84,6 @@ function User() {
     } catch (error) {
       console.log("Error fetching data:", error);
     }
-  };
 
   return (
     <div className="user">
@@ -130,7 +128,7 @@ function User() {
           </div>
         </div>
       ) : (
-        <a href="https://localhost:3000/auth/google/login">
+        <a href={`${baseUrl}/auth/google/login`}>
           <img src="./images/web_neutral_rd_ctn.svg" className="google-logo" />
         </a>
       )}
