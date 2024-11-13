@@ -7,15 +7,6 @@ import Piechart from "../components/charts/Piechart";
 import Calendar from "../components/charts/Calendar";
 import "../styles/user.css";
 
-type User = {
-  googleId: string;
-  id: number;
-  name: string;
-  position: number;
-  profilePicture: string;
-  useLanguage: "[]";
-};
-
 function User() {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
@@ -84,7 +75,7 @@ function User() {
     } catch (error) {
       console.log("Error fetching data:", error);
     }
-
+  };
   return (
     <div className="user">
       {/* 로그인 여부에 따라 다른 화면 표시 */}
@@ -134,7 +125,6 @@ function User() {
       )}
     </div>
   );
-}
 }
 
 export default User;

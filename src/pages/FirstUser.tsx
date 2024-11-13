@@ -17,7 +17,7 @@ const FirstUser = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
-  const baseUrl = "https://localhost:3000";
+  const baseUrl = import.meta.env.VITE_BACK_URL;
   const navigate = useNavigate();
 
   const [language, setLanguage] = useState<string[]>([]);
