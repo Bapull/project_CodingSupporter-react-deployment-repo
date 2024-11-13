@@ -34,9 +34,14 @@ const userSlice = createSlice({
       state.user = null;
       state.isLoggedIn = false;
     },
+    updateUser(state, action: PayloadAction<Partial<User>>) {
+      if (state.user) {
+        state.user = { ...state.user, ...action.payload }; // 기존 user 데이터에 새로운 정보 병합
+      }
+    },
   },
 });
 
 // 액션 생성자 내보내기
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, updateUser } = userSlice.actions;
 export default userSlice.reducer;

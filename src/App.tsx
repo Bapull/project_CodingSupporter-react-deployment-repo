@@ -15,7 +15,7 @@ import Feedback from "./pages/Feedback";
 import MenTChat from "./pages/MenTChat";
 import Folder from "./pages/Folder";
 import User from "./pages/User";
-// import FirstUser from "./pages/FirstUser";
+import FirstUser from "./pages/FirstUser";
 import Setting from "./pages/Settings";
 import HeadTitle from "./components/HeadTitle";
 import NavBar from "./components/Navbar";
@@ -37,7 +37,7 @@ function App() {
           <Route path="/mentchat" element={<MenTChat />} />
           <Route path="/folder" element={<Folder />} />
           <Route path="/user" element={<User />} />
-          {/* <Route path="/first-user" element={<FirstUser />} /> */}
+          <Route path="/first-user" element={<FirstUser />} />
           <Route path="/setting" element={<Setting />} />
           {/* {테스트 페이지} */}
           <Route path="/user-test" element={<UserTest />} />
