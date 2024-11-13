@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import MentoDetail from './MentoDetail';
 
 type Mento={
@@ -13,7 +13,7 @@ type Mento={
 const MentoTest = () => {
   const mentoLanguageRef = useRef<HTMLInputElement>(null);
   const [mentos, setMentos] = useState<Mento[]>([])
-  const baseUrl = 'https://localhost:3000'
+  const baseUrl = import.meta.env.VITE_BACK_URL;
   const getMento = () => {
     fetch(`${baseUrl}/user/mento?language=${mentoLanguageRef.current?.value}`,{
       credentials:'include'
