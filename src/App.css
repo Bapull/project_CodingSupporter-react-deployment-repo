@@ -32,3 +32,9 @@ body {
 .home .title {
   margin: 5%;
 }
+
+@media screen and (max-height: 800px) {
+  .container {
+    margin-top: 0;
+  }
+}
