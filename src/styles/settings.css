@@ -16,7 +16,9 @@
 
 .setting-sidebar {
   width: 300px;
-  border-radius: 50px;
+  /* border-radius: 50px; */
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
   background-color: #e1e5ef;
   display: flex;
   flex-direction: column;
@@ -52,4 +54,10 @@
   flex: 1;
   margin-left: 10px;
   overflow-y: auto;
+}
+
+@media screen and (max-height: 800px) {
+  .setting-container {
+    margin-top: 0;
+  }
 }
