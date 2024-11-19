@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 type ChatRoom = {
   id:number,
   receiver:string,
-  sender:string
+  sender:string,
+  noteName:string
 }
 type DetailProps = {
   chatroom:ChatRoom,
@@ -13,7 +14,7 @@ const ChatRoomDetail: React.FC<DetailProps> = ({chatroom, id}) => {
   console.log(id)
   const nav = useNavigate()
   const joinChat = () => {
-    nav(`/chat-test/${chatroom.id}`)
+    nav(`/chat-test/${chatroom.id}`,{state:chatroom.noteName})
   }
   if(chatroom.sender === `${id}`){
     return (

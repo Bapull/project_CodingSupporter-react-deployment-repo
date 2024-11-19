@@ -3,7 +3,8 @@ import ChatRoomDetail from './ChatRoomDetail'
 type ChatRoom = {
   id:number,
   receiver:string,
-  sender:string
+  sender:string,
+  noteName:string
 }
 
 const ChatRoom = () => {
