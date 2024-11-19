@@ -15,7 +15,7 @@ const MentoTest = () => {
   const [mentos, setMentos] = useState<Mento[]>([])
   const baseUrl = import.meta.env.VITE_BACK_URL;
   const getMento = () => {
-    fetch(`${baseUrl}/user/mento?language=${mentoLanguageRef.current?.value}`,{
+    fetch(`${baseUrl}/auth/mento?language=${mentoLanguageRef.current?.value}`,{
       credentials:'include'
     }).then(res=>res.json())
     .then((data)=>data.info)
