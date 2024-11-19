@@ -13,6 +13,15 @@ interface NoteData {
   mdFile: string;
 }
 
+interface MentorData {
+  id: number;
+  name: string;
+  position: number;
+  useLanguage: [];
+  profilePicture: string;
+  isActive: boolean;
+}
+
 const randomMessages = [
   '성장의 기록을 남기고,<br />앞으로 나아가는 발판으로 삼으세요.',
   '실수는 성공의 디딤돌입니다.<br />함께 해결해 나가요!',
@@ -26,6 +35,9 @@ const Feedback: React.FC = () => {
   const [question, setQuestion] = useState('');
   const [noteData, setNoteData] = useState<NoteData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [mentors, setMentors] = useState([] as MentorData[]);
+  const [showMentors, setShowMentors] = useState(false);
+
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_BACK_URL;
@@ -114,19 +126,36 @@ const Feedback: React.FC = () => {
     }
   };
 
+  const handleSearchMento = async () => {
+    try {
+      const response = await fetch(`${baseUrl}/auth/mento?language=${question}`, {
+        method: 'GET',
+        credentials: 'include',
+      });
+
+      if (!response.ok) throw new Error(`Error: ${response.status}`);
+
+      const data = await response.json();
+      setMentors(data.info);
+      setShowMentors(true);
+    } catch (error) {
+      alert((error as Error).message || '알 수 없는 오류가 발생했습니다.');
+    }
+  };
+
   return (
     <div className="feedback">
       <div className="container">
         <div className="incorrect-note-section">
-          {/* 오답노트 메시지와 내용 표시 */}
           {noteData ? (
             <>
               <IncorrectNote data={noteData} />
-              {/* 오답노트 저장 버튼 */}
               <button className="save-button" onClick={handleSave}>
                 Save Note
               </button>
-              <button className="search-mento-button">아직 찾지 못하셨나요?</button>
+              <button className="search-mento-button" onClick={handleSearchMento}>
+                아직 찾지 못하셨나요?
+              </button>
             </>
           ) : (
             <div className="random-message-container">
@@ -135,31 +164,57 @@ const Feedback: React.FC = () => {
                 alt="Feedback Code Checking GIF"
                 className="feedback-code-checking-gif"
               />
-              <div className="random-message" dangerouslySetInnerHTML={{ __html: getRandomMessage() }} />
+              <div
+                className="random-message"
+                dangerouslySetInnerHTML={{ __html: getRandomMessage() }}
+              />
             </div>
           )}
         </div>
         <div className="divider"></div>
         <div className="question-section">
-          <h2 className="error-code">Code</h2>
-          <textarea
-            className="error-code-input"
-            placeholder="Enter code..."
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-          ></textarea>
-
-          <h2 className="error-question">Question</h2>
-          <textarea
-            className="error-question-input"
-            placeholder="Enter question..."
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-          ></textarea>
-
-          <button className="submit-button" onClick={handleSubmitQuestion}>
-            Submit
-          </button>
+          {showMentors ? (
+            <div className="mentor-list">
+              <h2>Mentor List</h2>
+              {mentors.map((mentor) => (
+                <div key={mentor.id} className="mentor-card">
+                <img src={mentor.profilePicture} alt={`${mentor.name}'s profile`} />
+                <div>
+                  <h3>{mentor.name}</h3>
+                  <p>Languages: {mentor.useLanguage.join(', ')}</p>
+                  <p>Position: {mentor.position}</p>
+                  <p>Status: {mentor.isActive ? 'Active' : 'Inactive'}</p>
+                </div>
+              </div>
+            ))}
+            <button className="load-more-button" onClick={handleSearchMento}>
+              ▼ Load More
+            </button>
+              <button className="back-button" onClick={() => setShowMentors(false)}>
+                Back to Question
+              </button>
+            </div>
+          ) : (
+            <>
+              <h2 className="error-code">Code</h2>
+              <textarea
+                className="error-code-input"
+                placeholder="Enter code..."
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+              ></textarea>
+              <h2 className="error-question">Question</h2>
+              <textarea
+                className="error-question-input"
+                placeholder="Enter question..."
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+              ></textarea>
+              <button className="submit-button" onClick={handleSubmitQuestion}>
+                Submit
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
