@@ -17,7 +17,7 @@ interface MentorData {
   id: number;
   name: string;
   position: number;
-  useLanguage: [];
+  useLanguage: string
   profilePicture: string;
   isActive: boolean;
 }
@@ -34,6 +34,7 @@ const Feedback: React.FC = () => {
   const [code, setCode] = useState('');
   const [question, setQuestion] = useState('');
   const [noteData, setNoteData] = useState<NoteData | null>(null);
+  const [language, setLanguage] = useState('');
   const [loading, setLoading] = useState(true);
   const [mentors, setMentors] = useState([] as MentorData[]);
   const [showMentors, setShowMentors] = useState(false);
@@ -91,6 +92,7 @@ const Feedback: React.FC = () => {
       const data = await response.json();
       console.log(data);
       setNoteData(data.data); // noteData를 설정할 때 data.data를 사용
+      setLanguage(data.data.language);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
@@ -128,15 +130,18 @@ const Feedback: React.FC = () => {
 
   const handleSearchMento = async () => {
     try {
-      const response = await fetch(`${baseUrl}/auth/mento?language=${question}`, {
+      const response = await fetch(`${baseUrl}/auth/mento?language=${language}`, {
         method: 'GET',
         credentials: 'include',
       });
 
       if (!response.ok) throw new Error(`Error: ${response.status}`);
 
+      console.log(`${baseUrl}/auth/mento?language=${language}`);
       const data = await response.json();
       setMentors(data.info);
+      console.log(data.info);
+      console.log(mentors);
       setShowMentors(true);
     } catch (error) {
       alert((error as Error).message || '알 수 없는 오류가 발생했습니다.');
@@ -175,21 +180,20 @@ const Feedback: React.FC = () => {
         <div className="question-section">
           {showMentors ? (
             <div className="mentor-list">
-              <h2>Mentor List</h2>
-              {mentors.map((mentor) => (
-                <div key={mentor.id} className="mentor-card">
-                <img src={mentor.profilePicture} alt={`${mentor.name}'s profile`} />
-                <div>
-                  <h3>{mentor.name}</h3>
-                  <p>Languages: {mentor.useLanguage.join(', ')}</p>
-                  <p>Position: {mentor.position}</p>
-                  <p>Status: {mentor.isActive ? 'Active' : 'Inactive'}</p>
-                </div>
-              </div>
-            ))}
-            <button className="load-more-button" onClick={handleSearchMento}>
-              ▼ Load More
-            </button>
+              {mentors.map((mentor) => {
+                const languages = JSON.parse(mentor.useLanguage);
+                return (
+                  <div className='mentor-card' key={mentor.id}>
+                    <p>Name: {mentor.name}</p>
+                    <p>Languages: {languages.join(', ')}</p>
+                    <img className='mentor-img' src={mentor.profilePicture} alt={mentor.name} />
+                    <div className='mentor-active'>{mentor.isActive ? '🟢' : '⚫'}</div>
+                  </div>
+                );
+              })}
+              <button className="load-more-button" onClick={handleSearchMento}>
+                ▼ Load More
+              </button>
               <button className="back-button" onClick={() => setShowMentors(false)}>
                 Back to Question
               </button>
