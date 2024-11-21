@@ -128,6 +128,7 @@ const Feedback: React.FC = () => {
     }
   };
 
+  // 멘토 검색 
   const handleSearchMento = async () => {
     try {
       const response = await fetch(`${baseUrl}/auth/mento?language=${language}`, {
@@ -137,14 +138,15 @@ const Feedback: React.FC = () => {
 
       if (!response.ok) throw new Error(`Error: ${response.status}`);
 
-      console.log(`${baseUrl}/auth/mento?language=${language}`);
       const data = await response.json();
       setMentors(data.info);
-      console.log(data.info);
-      console.log(mentors);
       setShowMentors(true);
     } catch (error) {
-      alert((error as Error).message || '알 수 없는 오류가 발생했습니다.');
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert('알 수 없는 오류가 발생했습니다.');
+      }
     }
   };
 
@@ -184,19 +186,21 @@ const Feedback: React.FC = () => {
                 const languages = JSON.parse(mentor.useLanguage);
                 return (
                   <div className='mentor-card' key={mentor.id}>
-                    <p>Name: {mentor.name}</p>
-                    <p>Languages: {languages.join(', ')}</p>
                     <img className='mentor-img' src={mentor.profilePicture} alt={mentor.name} />
+                    <p>{mentor.name}</p>
+                    <p>{languages.join(', ')}</p>
                     <div className='mentor-active'>{mentor.isActive ? '🟢' : '⚫'}</div>
                   </div>
                 );
               })}
-              <button className="load-more-button" onClick={handleSearchMento}>
-                ▼ Load More
-              </button>
-              <button className="back-button" onClick={() => setShowMentors(false)}>
-                Back to Question
-              </button>
+              <div className='mentor-button'>
+                <button onClick={handleSearchMento}>
+                  ▼ Load More
+                </button>
+                <button onClick={() => setShowMentors(false)}>
+                  Back to Question
+                </button>
+              </div>
             </div>
           ) : (
             <>
