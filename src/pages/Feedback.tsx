@@ -8,6 +8,7 @@ import '../styles/feedback.css';
 import IncorrectNote from '../components/IncorrectNote';
 
 interface NoteData {
+  id: number;
   language: string;
   errorType: number;
   mdFile: string;
@@ -53,10 +54,10 @@ const Feedback: React.FC = () => {
       .then((data) => {
         if (data.info) {
           console.log(data.info);
-          dispatch(setUser(data.info)); // 유저 정보를 dispatch를 이용해서 리덕스 스토어에 저장
+          dispatch(setUser(data.info)); 
         } else {
           alert('로그인이 필요합니다.');
-          navigate('/login'); // 로그인 페이지로 이동
+          navigate('/login'); 
         }
       })
       .finally(() => setLoading(false));
@@ -72,7 +73,7 @@ const Feedback: React.FC = () => {
     return randomMessages[randomIndex];
   };
 
-  // POST 요청: 코드와 질문을 보내고 데이터 수신
+  // 코드와 질문을 보내고 데이터 수신
   const handleSubmitQuestion = async () => {
     const formattedCode = `\`\`\`\n${code}\n\`\`\``;
     try {
@@ -150,6 +151,11 @@ const Feedback: React.FC = () => {
     }
   };
 
+  const handleMentorClick = async (mentorId: number) => {
+    await handleSave();
+    navigate('/mentchat', { state: { mentorId } });
+  };
+
   return (
     <div className="feedback">
       <div className="container">
@@ -185,7 +191,7 @@ const Feedback: React.FC = () => {
               {mentors.map((mentor) => {
                 const languages = JSON.parse(mentor.useLanguage);
                 return (
-                  <div className='mentor-card' key={mentor.id}>
+                  <div className='mentor-card' key={mentor.id} onClick={() => handleMentorClick(mentor.id)}>
                     <img className='mentor-img' src={mentor.profilePicture} alt={mentor.name} />
                     <p>{mentor.name}</p>
                     <p>{languages.join(', ')}</p>
