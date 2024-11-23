@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../redux/userSlice';
-import { AppDispatch } from '../redux/store';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { RootState } from '../redux/store';
 
 import '../styles/feedback.css';
 import IncorrectNote from '../components/IncorrectNote';
@@ -40,28 +39,17 @@ const Feedback: React.FC = () => {
   const [mentors, setMentors] = useState([] as MentorData[]);
   const [showMentors, setShowMentors] = useState(false);
 
-  const dispatch = useDispatch<AppDispatch>();
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_BACK_URL;
-
-  // 유저 인증 및 로그인 상태 확인
+  
   useEffect(() => {
-    fetch(`${baseUrl}/user/info`, {
-      method: 'GET',
-      credentials: 'include',
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.info) {
-          console.log(data.info);
-          dispatch(setUser(data.info)); 
-        } else {
-          alert('로그인이 필요합니다.');
-          navigate('/login'); 
-        }
-      })
-      .finally(() => setLoading(false));
-  }, [dispatch, navigate]);
+    if (!isLoggedIn) {
+      navigate('/login');
+    } else {
+      setLoading(false);
+    }
+  }, [isLoggedIn, navigate]);
 
   if (loading) {
     return <div>Loading...</div>;
