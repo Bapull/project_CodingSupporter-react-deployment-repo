@@ -34,10 +34,10 @@ const Barchart = () => {
 
         // 데이터를 올바르게 매핑하여 설정
         const mappedErrors = {
-          LogicalError: data.errorInfo[ErrorType.LogicalError] || 0,
-          SyntaxError: data.errorInfo[ErrorType.SyntaxError] || 0,
-          RuntimeError: data.errorInfo[ErrorType.RuntimeError] || 0,
-          EtcError: data.errorInfo[ErrorType.EtcError] || 0,
+          logical: data.errorInfo[ErrorType.LogicalError] || 0,
+          syntax: data.errorInfo[ErrorType.SyntaxError] || 0,
+          runtime: data.errorInfo[ErrorType.RuntimeError] || 0,
+          etc: data.errorInfo[ErrorType.EtcError] || 0,
         };
 
         // console.log("Mapped errors:", mappedErrors);
@@ -66,12 +66,7 @@ const Barchart = () => {
           datasets: [
             {
               label: "Error Information",
-              data: [
-                errors.LogicalError,
-                errors.SyntaxError,
-                errors.RuntimeError,
-                errors.EtcError,
-              ],
+              data: [errors.logical, errors.syntax, errors.runtime, errors.etc],
               backgroundColor: ["#6c92bf", "#8ba7cc", "#a8bcd8", "#c5d2e5"],
               borderColor: ["#c5d2e5", "#a8bcd8", "#8ba7cc", "#6c92bf"],
               borderWidth: 1,

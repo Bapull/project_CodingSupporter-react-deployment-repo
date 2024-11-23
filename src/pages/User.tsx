@@ -13,7 +13,19 @@ function User() {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const reload = import.meta.env.VITE_FRONT_URL;
   const baseUrl = import.meta.env.VITE_BACK_URL;
+  const date = new Date();
+  const formatter = new Intl.DateTimeFormat("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    timeZone: "Asia/Seoul",
+  });
+  const formattedDate = formatter
+    .format(date)
+    .replace(/\. /g, "-")
+    .replace(".", "");
 
+  console.log(formattedDate);
   useEffect(() => {
     // 유저 정보 불러오기
     const fetchUserInfo = async () => {
@@ -76,6 +88,7 @@ function User() {
       console.log("Error fetching data:", error);
     }
   };
+
   return (
     <div className="user">
       {/* 로그인 여부에 따라 다른 화면 표시 */}
