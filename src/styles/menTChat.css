@@ -1,0 +1,34 @@
+.mentor-chat .wrapper {
+  box-sizing: border-box;
+  display: flex;
+  width: 80%;
+  min-width: 600px;
+  height: 78vh;
+  margin: 0 auto;
+  margin-top: 2%;
+  background-color: none;
+  transition: cubic-bezier(1, 0, 0, 1) 1s;
+}
+
+.mentor-chat-content-left {
+  order: 1;
+  border-radius: 50px;
+  border-top-right-radius: 37px;
+  border-bottom-right-radius: 37px;
+  width: 49.5%;
+  padding: 2%;
+  background-color: #f0f3fa;
+  transition: cubic-bezier(1, 0, 0, 1) 1s;
+}
+
+.mentor-chat-content-right {
+  order: 2;
+  border-radius: 50px;
+  border-top-left-radius: 37px;
+  border-bottom-left-radius: 37px;
+  margin-left: 0.5%;
+  width: 49.5%;
+  padding: 2%;
+  background-color: #f0f3fa;
+  transition: cubic-bezier(1, 0, 0, 1) 1s;
+}
