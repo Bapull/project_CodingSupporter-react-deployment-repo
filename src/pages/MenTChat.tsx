@@ -11,7 +11,7 @@ function MenTChat() {
         <div className="mentor-chat-content-left">
           {/* <IncorrectNote data={noteData} /> */}아 몰랑 여긴 코드
         </div>
-        <div className="mentor-chat-content-right">dd</div>
+        <div className="mentor-chat-content-right">ddd</div>
       </div>
     </div>
   );
