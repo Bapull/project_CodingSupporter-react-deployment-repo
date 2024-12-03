@@ -17,7 +17,7 @@ interface MentorData {
   id: number;
   name: string;
   position: number;
-  useLanguage: string
+  useLanguage: string;
   profilePicture: string;
   isActive: boolean;
 }
@@ -42,7 +42,7 @@ const Feedback: React.FC = () => {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_BACK_URL;
-  
+
   useEffect(() => {
     if (!isLoggedIn) {
       navigate('/login');
@@ -107,17 +107,20 @@ const Feedback: React.FC = () => {
         throw new Error(`Error: ${response.status} - ${response.statusText}`);
       }
 
+      const data = await response.json();
       alert('Note saved successfully!');
+      return data.noteId; // 노트 ID 반환
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
       } else {
         alert('알 수 없는 오류가 발생했습니다.');
       }
+      return null;
     }
   };
 
-  // 멘토 검색 
+  // 멘토 검색
   const handleSearchMento = async () => {
     try {
       const response = await fetch(`${baseUrl}/auth/mento?language=${language}`, {
@@ -140,8 +143,19 @@ const Feedback: React.FC = () => {
   };
 
   const handleMentorClick = async (mentorId: number) => {
-    await handleSave();
-    navigate('/mentchat', { state: { mentorId } });
+    const savedId = await handleSave();
+    if (!savedId) return;
+
+    const response = await fetch(`${baseUrl}/chat-room/chat-request?mento-id=${mentorId}&note-id=${savedId}`, {
+      credentials: 'include',
+      method: 'POST',
+    });
+
+    if (response.ok) {
+      alert('채팅 요청이 완료되었습니다.');
+    } else {
+      alert('채팅 요청에 실패했습니다.');
+    }
   };
 
   return (
@@ -165,10 +179,7 @@ const Feedback: React.FC = () => {
                 alt="Feedback Code Checking GIF"
                 className="feedback-code-checking-gif"
               />
-              <div
-                className="random-message"
-                dangerouslySetInnerHTML={{ __html: getRandomMessage() }}
-              />
+              <div className="random-message" dangerouslySetInnerHTML={{ __html: getRandomMessage() }} />
             </div>
           )}
         </div>
@@ -179,21 +190,17 @@ const Feedback: React.FC = () => {
               {mentors.map((mentor) => {
                 const languages = JSON.parse(mentor.useLanguage);
                 return (
-                  <div className='mentor-card' key={mentor.id} onClick={() => handleMentorClick(mentor.id)}>
-                    <img className='mentor-img' src={mentor.profilePicture} alt={mentor.name} />
+                  <div className="mentor-card" key={mentor.id} onClick={() => handleMentorClick(mentor.id)}>
+                    <img className="mentor-img" src={mentor.profilePicture} alt={mentor.name} />
                     <p>{mentor.name}</p>
                     <p>{languages.join(', ')}</p>
-                    <div className='mentor-active'>{mentor.isActive ? '🟢' : '⚫'}</div>
+                    <div className="mentor-active">{mentor.isActive ? '🟢' : '⚫'}</div>
                   </div>
                 );
               })}
-              <div className='mentor-button'>
-                <button onClick={handleSearchMento}>
-                  ▼ Load More
-                </button>
-                <button onClick={() => setShowMentors(false)}>
-                  Back to Question
-                </button>
+              <div className="mentor-button">
+                <button onClick={handleSearchMento}>▼ Load More</button>
+                <button onClick={() => setShowMentors(false)}>Back to Question</button>
               </div>
             </div>
           ) : (
