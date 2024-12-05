@@ -108,7 +108,7 @@ const Feedback: React.FC = () => {
       }
 
       const data = await response.json();
-      alert("Note saved successfully!");
+      alert('Note saved successfully!');
       return data.noteId; // 노트 ID 반환
     } catch (error) {
       if (error instanceof Error) {
@@ -149,18 +149,15 @@ const Feedback: React.FC = () => {
     const savedId = await handleSave();
     if (!savedId) return;
 
-    const response = await fetch(
-      `${baseUrl}/chat-room/chat-request?mento-id=${mentorId}&note-id=${savedId}`,
-      {
-        credentials: "include",
-        method: "POST",
-      }
-    );
+    const response = await fetch(`${baseUrl}/chat-room/chat-request?mento-id=${mentorId}&note-id=${savedId}`, {
+      credentials: 'include',
+      method: 'POST',
+    });
 
     if (response.ok) {
-      alert("채팅 요청이 완료되었습니다.");
+      alert('채팅 요청이 완료되었습니다.');
     } else {
-      alert("채팅 요청에 실패했습니다.");
+      alert('채팅 요청에 실패했습니다.');
     }
   };
 
@@ -188,10 +185,7 @@ const Feedback: React.FC = () => {
                 alt="Feedback Code Checking GIF"
                 className="feedback-code-checking-gif"
               />
-              <div
-                className="random-message"
-                dangerouslySetInnerHTML={{ __html: getRandomMessage() }}
-              />
+              <div className="random-message" dangerouslySetInnerHTML={{ __html: getRandomMessage() }} />
             </div>
           )}
         </div>
@@ -202,29 +196,17 @@ const Feedback: React.FC = () => {
               {mentors.map((mentor) => {
                 const languages = JSON.parse(mentor.useLanguage);
                 return (
-                  <div
-                    className="mentor-card"
-                    key={mentor.id}
-                    onClick={() => handleMentorClick(mentor.id)}
-                  >
-                    <img
-                      className="mentor-img"
-                      src={mentor.profilePicture}
-                      alt={mentor.name}
-                    />
+                  <div className="mentor-card" key={mentor.id} onClick={() => handleMentorClick(mentor.id)}>
+                    <img className="mentor-img" src={mentor.profilePicture} alt={mentor.name} />
                     <p>{mentor.name}</p>
-                    <p>{languages.join(", ")}</p>
-                    <div className="mentor-active">
-                      {mentor.isActive ? "🟢" : "⚫"}
-                    </div>
+                    <p>{languages.join(', ')}</p>
+                    <div className="mentor-active">{mentor.isActive ? '🟢' : '⚫'}</div>
                   </div>
                 );
               })}
               <div className="mentor-button">
                 <button onClick={handleSearchMento}>▼ Load More</button>
-                <button onClick={() => setShowMentors(false)}>
-                  Back to Question
-                </button>
+                <button onClick={() => setShowMentors(false)}>Back to Question</button>
               </div>
             </div>
           ) : (
