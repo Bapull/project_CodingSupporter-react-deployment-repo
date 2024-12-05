@@ -82,15 +82,12 @@
 .user .profile-language-list {
   margin: 0 auto;
   padding: 2%;
-  overflow: auto;
-  white-space: nowrap;
-  scrollbar-width: none;
 }
 
 .user .profile-language-list-content {
   background-color: rgb(220, 220, 220);
-  display: inline;
-  margin: 0 auto;
+  display: inline-block;
+  margin: 2% auto;
   margin-right: 5%;
   border-radius: 30px;
   padding: 2%;

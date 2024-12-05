@@ -19,6 +19,7 @@ import FirstUser from "./pages/FirstUser";
 import Setting from "./pages/Settings";
 import HeadTitle from "./components/HeadTitle";
 import NavBar from "./components/Navbar";
+// import Alarm from "./components/Alarm";
 
 // {테스트 페이지}
 import UserTest from "./test/UserTest";
@@ -31,13 +32,14 @@ function App() {
     <Provider store={store}>
       <Router>
         <HeadTitle />
-        <NavBar />
+        {/* <NavBar /> */}
+        {/* <Alarm /> */}
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/feedback" element={<Feedback />} />
-          <Route path="/mentchat" element={<MenTChat />} />
+          <Route path="/mentchat/:room" element={<MenTChat />} />
           <Route path="/folder" element={<Folder />} />
           <Route path="/user" element={<User />} />
           <Route path="/first-user" element={<FirstUser />} />

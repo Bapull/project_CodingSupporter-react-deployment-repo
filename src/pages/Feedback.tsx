@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { RootState } from '../redux/store';
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "../redux/store";
 
-import '../styles/feedback.css';
-import IncorrectNote from '../components/IncorrectNote';
+import "../styles/feedback.css";
+import IncorrectNote from "../components/IncorrectNote";
 
 interface NoteData {
   id: number;
@@ -23,18 +23,18 @@ interface MentorData {
 }
 
 const randomMessages = [
-  '성장의 기록을 남기고,<br />앞으로 나아가는 발판으로 삼으세요.',
-  '실수는 성공의 디딤돌입니다.<br />함께 해결해 나가요!',
-  '고민했던 흔적을 남기고,<br />더 나은 코드를 향해 나아가세요.',
-  '작은 실수가 모여 큰 성장이 됩니다.<br />함께 해결해요!',
-  '코드 여정에서 만난 문제들,<br />여기서 해결하며 경험으로 쌓아가세요.',
+  "성장의 기록을 남기고,<br />앞으로 나아가는 발판으로 삼으세요.",
+  "실수는 성공의 디딤돌입니다.<br />함께 해결해 나가요!",
+  "고민했던 흔적을 남기고,<br />더 나은 코드를 향해 나아가세요.",
+  "작은 실수가 모여 큰 성장이 됩니다.<br />함께 해결해요!",
+  "코드 여정에서 만난 문제들,<br />여기서 해결하며 경험으로 쌓아가세요.",
 ];
 
 const Feedback: React.FC = () => {
-  const [code, setCode] = useState('');
-  const [question, setQuestion] = useState('');
+  const [code, setCode] = useState("");
+  const [question, setQuestion] = useState("");
   const [noteData, setNoteData] = useState<NoteData | null>(null);
-  const [language, setLanguage] = useState('');
+  const [language, setLanguage] = useState("");
   const [loading, setLoading] = useState(true);
   const [mentors, setMentors] = useState([] as MentorData[]);
   const [showMentors, setShowMentors] = useState(false);
@@ -45,7 +45,7 @@ const Feedback: React.FC = () => {
 
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate('/login');
+      navigate("/login");
     } else {
       setLoading(false);
     }
@@ -66,11 +66,11 @@ const Feedback: React.FC = () => {
     const formattedCode = `\`\`\`\n${code}\n\`\`\``;
     try {
       const response = await fetch(`${baseUrl}/incorrect-note/generate`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        credentials: 'include',
+        credentials: "include",
         body: JSON.stringify({ code: formattedCode, question }),
       });
 
@@ -86,7 +86,7 @@ const Feedback: React.FC = () => {
       if (error instanceof Error) {
         alert(error.message);
       } else {
-        alert('알 수 없는 오류가 발생했습니다.');
+        alert("알 수 없는 오류가 발생했습니다.");
       }
     }
   };
@@ -95,11 +95,11 @@ const Feedback: React.FC = () => {
   const handleSave = async () => {
     try {
       const response = await fetch(`${baseUrl}/incorrect-note/save`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        credentials: 'include',
+        credentials: "include",
         body: JSON.stringify(noteData),
       });
 
@@ -114,7 +114,7 @@ const Feedback: React.FC = () => {
       if (error instanceof Error) {
         alert(error.message);
       } else {
-        alert('알 수 없는 오류가 발생했습니다.');
+        alert("알 수 없는 오류가 발생했습니다.");
       }
       return null;
     }
@@ -123,10 +123,13 @@ const Feedback: React.FC = () => {
   // 멘토 검색
   const handleSearchMento = async () => {
     try {
-      const response = await fetch(`${baseUrl}/auth/mento?language=${language}`, {
-        method: 'GET',
-        credentials: 'include',
-      });
+      const response = await fetch(
+        `${baseUrl}/auth/mento?language=${language}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
 
       if (!response.ok) throw new Error(`Error: ${response.status}`);
 
@@ -137,7 +140,7 @@ const Feedback: React.FC = () => {
       if (error instanceof Error) {
         alert(error.message);
       } else {
-        alert('알 수 없는 오류가 발생했습니다.');
+        alert("알 수 없는 오류가 발생했습니다.");
       }
     }
   };
@@ -168,7 +171,10 @@ const Feedback: React.FC = () => {
               <button className="save-button" onClick={handleSave}>
                 Save Note
               </button>
-              <button className="search-mento-button" onClick={handleSearchMento}>
+              <button
+                className="search-mento-button"
+                onClick={handleSearchMento}
+              >
                 아직 찾지 못하셨나요?
               </button>
             </>
