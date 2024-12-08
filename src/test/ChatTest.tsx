@@ -10,6 +10,7 @@ type Message = {
   room:string;
   message:string;
   sender:string;
+  senderId:number
 }
 const ChatTest = () => {
   const {state:noteName} = useLocation()
@@ -70,7 +71,7 @@ const ChatTest = () => {
 
   const handleSendMessage = ()=>{
     if(!socket) return
-    socket.emit('message',{room,message,sender:user?.name})
+    socket.emit('message',{room,message,sender:user?.name, senderId:user?.id})
     
     setMessage('')
   }

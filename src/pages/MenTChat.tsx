@@ -11,6 +11,7 @@ type Message = {
   room: string;
   message: string;
   sender: string;
+  senderId:number;
 };
 
 function MenTChat() {
@@ -86,7 +87,7 @@ function MenTChat() {
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!socket) return;
-    socket.emit("message", { room, message, sender: user?.name });
+    socket.emit("message", { room, message, sender: user?.name, senderId:user?.id });
     setMessage("");
   };
 
