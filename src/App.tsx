@@ -26,6 +26,8 @@ import UserTest from "./test/UserTest";
 import ChatTest from "./test/ChatTest";
 import MentoTest from "./test/MentoTest";
 import ChatRoom from "./test/ChatRoom";
+import Notification from "./test/Notification";
+import GetNoteName from "./test/GetNoteName";
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
           <Route path="/chat-test/:room" element={<ChatTest />} />
           <Route path="/mento-test" element={<MentoTest />} />
           <Route path="/chatroom-test" element={<ChatRoom />} />
+          <Route path="/notification-test" element={<Notification />} />
+          <Route path="/getname-test" element={<GetNoteName />} />
         </Routes>
       </Router>
     </Provider>
