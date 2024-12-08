@@ -32,7 +32,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <HeadTitle />
-        {/* <NavBar /> */}
+        <NavBar />
         {/* <Alarm /> */}
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
