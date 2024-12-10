@@ -5,7 +5,6 @@ import { RootState } from '../redux/store';
 
 import '../styles/folder.css';
 
-// 폴더 타입 정의
 interface FolderData {
   message: string;
   folder: {
@@ -13,7 +12,14 @@ interface FolderData {
   };
 }
 
-function Folder() {
+const errorTypes: { [key: number]: string } = {
+  1: "Logical Error",
+  2: "Syntax Error",
+  3: "Runtime Error",
+  4: "Etc"
+};
+
+const Folder: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [folderData, setFolderData] = useState<FolderData | null>(null);
   const [selectedLanguage, setSelectedLanguage] = useState<string>('내 폴더');
@@ -22,7 +28,6 @@ function Folder() {
   const baseUrl = import.meta.env.VITE_BACK_URL;
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
-  // 로그인 상태 확인을 위한 useEffect
   useEffect(() => {
     if (!isLoggedIn) {
       navigate('/login');
@@ -31,7 +36,6 @@ function Folder() {
     }
   }, [isLoggedIn, navigate]);
 
-  // 폴더 데이터 fetch를 위한 useEffect
   useEffect(() => {
     const fetchFolderData = async () => {
       try {
@@ -40,7 +44,6 @@ function Folder() {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
-            // 쿠키가 있다면 자동으로 전송됩니다
           }
         });
   
@@ -79,7 +82,7 @@ function Folder() {
         <div className="folder-sidebar">
           <ul>
             {folderData &&
-              Object.keys(folderData).map((language) => (
+              Object.keys(folderData.folder).map((language) => (
                 <li
                   key={language}
                   onClick={() => handleLanguageClick(language)}
@@ -96,9 +99,10 @@ function Folder() {
           </div>
           <div className="folder-grid">
             {folderData &&
-              folderData.folder[selectedLanguage]?.map((folder, index) => (
+              folderData.folder[selectedLanguage]?.map((errorNumber, index) => (
                 <div key={index} className="folder-card">
-                  <img src="/images/Folder-black.png" alt={`${folder}`} />
+                  <img src="/images/Folder-black.png" alt={`folder-${errorNumber}`} />
+                  <p>{errorTypes[+errorNumber]}</p>
                 </div>
               ))}
           </div>
