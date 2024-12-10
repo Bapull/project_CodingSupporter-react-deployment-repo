@@ -43,12 +43,62 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
+  background-color: transparent;
   color: white;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   z-index: 1000;
+}
+
+.alarm .alarm-list {
+  position: absolute;
+  top: -20%;
+  right: 200%;
+  color: black;
+  background-color: white;
+  width: 250px;
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #121212;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #f0f3fa #121212;
+  transition: cubic-bezier(0.75, 0, 0, 0.75) 0.2s;
+  transform-origin: top right;
+  z-index: 1000;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.alarm .alarm-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.alarm .alarm-list::-webkit-scrollbar-thumb {
+  background-color: #121212;
+  border-radius: 10px;
+}
+
+.alarm .alarm-list::-webkit-scrollbar-track {
+  background-color: #f0f3fa;
+}
+
+.alarm p {
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.alarm .move-btn {
+  color: black;
+  border: 1px solid #121212;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-height: 800px) {

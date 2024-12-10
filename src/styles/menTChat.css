@@ -37,13 +37,14 @@
 .mentor-chat-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
+  margin: 1%;
 }
 
-.mentor-chat-header-title {
+/* .mentor-chat-header-title {
   font-size: 1.5rem;
   font-weight: 700;
-}
+} */
 
 .leave-button {
   height: 50%;
