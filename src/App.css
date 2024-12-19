@@ -91,9 +91,26 @@ body {
   padding: 0;
 }
 
+.alarm .alarm-btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .alarm .move-btn {
-  color: black;
+  font-weight: bold;
+  color: #121212;
   border: 1px solid #121212;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.alarm .delete-btn {
+  font-weight: bold;
+  color: rgba(244, 50, 50, 0.799);
+  border: 1px solid rgba(244, 50, 50, 0.799);
   background-color: transparent;
   border-radius: 5px;
   padding: 5px;
