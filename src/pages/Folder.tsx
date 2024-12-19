@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 
+import IncorrectNote from '../components/IncorrectNote';
 import '../styles/folder.css';
 
 interface FolderData {
@@ -32,6 +33,7 @@ interface NoteData {
   language: string;
   noteName: string;
   chatName: string | null;
+  mdFile: string;
 }
 
 const Folder: React.FC = () => {
@@ -41,6 +43,7 @@ const Folder: React.FC = () => {
   const [selectedError, setSelectedError] = useState<string | null>(null);
   const [files, setFiles] = useState<NoteFile[]>([]);
   const [selectedFile, setSelectedFile] = useState<NoteData | null>(null);
+  const [isViewModal, setIsViewModal] = useState(false);
 
   const navigate = useNavigate();
   const baseUrl = import.meta.env.VITE_BACK_URL;
@@ -70,7 +73,6 @@ const Folder: React.FC = () => {
   
         const data = await response.json();
         setFolderData(data);
-        console.log(data.folder);
       } catch (error) {
         console.error('폴더 데이터를 가져오는데 실패했습니다:', error);
         alert('데이터를 불러오는데 실패했습니다. 다시 시도해주세요.');
@@ -87,7 +89,11 @@ const Folder: React.FC = () => {
   }
 
   // 언어 선택
-  const handleLanguageClick = (language: string) => setSelectedLanguage(language);
+  const handleLanguageClick = (language: string) => {
+    setSelectedLanguage(language);
+    setSelectedError(null);
+    setFiles([]);
+  };
 
   // 뒤로가기 함수 추가
   const handleBack = () => {
@@ -111,7 +117,6 @@ const Folder: React.FC = () => {
       const data = await response.json();
       setFiles(data.notes);
       setSelectedError(errorNumber);
-      console.log(data.notes);
     } catch (error) {
       console.error('파일 목록을 가져오는데 실패했습니다:', error);
       alert('데이터를 불러오는데 실패했습니다. 다시 시도해주세요.');
@@ -120,9 +125,8 @@ const Folder: React.FC = () => {
 
   const handleFileClick = async (fileName: string) => {
     try {
-      console.log('요청 URL:', `${baseUrl}/incorrect-note/s3?note-name=${fileName}`);
-      
-      const response = await fetch(`${baseUrl}/incorrect-note/s3?note-name=${fileName}`, {
+      const encodedFileName = encodeURIComponent(fileName);
+      const response = await fetch(`${baseUrl}/incorrect-note/s3?note-name=${encodedFileName}`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -133,16 +137,13 @@ const Folder: React.FC = () => {
       if (!response.ok) throw new Error(`Error: ${response.status}`);
 
       const data = await response.json();
-      console.log('성공 응답:', data);
-      setSelectedFile(data.noteInfo);
+      setSelectedFile(data);
+      setIsViewModal(true);
     } catch (error) {
       console.error('파일을 가져오는데 실패했습니다:', error);
       alert('파일을 불러오는데 실패했습니다. 다시 시도해주세요.');
     }
   }
-  // 노트 클릭 시 노트 불러오기 실패
-  // 파일명 때문인듯 ?
-  // 성공 시 컴포넌트 이용하여 모달창 띄우기
 
   return (
     <div className="folder-container">
@@ -191,9 +192,19 @@ const Folder: React.FC = () => {
               <div className="files-container">
                 {files.map((file, index) => (
                   <div key={index} className="file-card" onClick={() => handleFileClick(file.noteName)}>
-                    <p>{file.noteName}</p>
+                    <p>{file.noteName.slice(5).replace('.md', '')}</p>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* 노트 모달창 */}
+          {isViewModal && selectedFile && (
+            <div className="modal-container" onClick={() => setIsViewModal(false)}>
+              <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setIsViewModal(false)}>X</button>
+                <IncorrectNote data={selectedFile} />
               </div>
             </div>
           )}
