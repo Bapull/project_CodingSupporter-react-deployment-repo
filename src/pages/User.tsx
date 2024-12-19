@@ -46,6 +46,12 @@ function User() {
           window.location.href = `${reload}/first-user`;
         }
 
+        // 오늘 출석체크 여부 확인 후 출석체크 실행
+        const todayAttendance = data.info.attendance?.includes(formattedDate);
+        if (!todayAttendance) {
+          await fetchPostAttendance();
+        }
+
         setUser(data.info);
       } catch (error) {
         console.log("Error fetching data:", error);
