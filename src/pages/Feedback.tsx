@@ -38,6 +38,7 @@ const Feedback: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [mentors, setMentors] = useState([] as MentorData[]);
   const [showMentors, setShowMentors] = useState(false);
+  const [randomMessage, setRandomMessage] = useState(randomMessages[0]);
 
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const navigate = useNavigate();
@@ -51,14 +52,22 @@ const Feedback: React.FC = () => {
     }
   }, [isLoggedIn, navigate]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentIndex = randomMessages.indexOf(randomMessage);
+      const nextIndex = (currentIndex + 1) % randomMessages.length;
+      setRandomMessage(randomMessages[nextIndex]);
+    }, 7000);
+
+    return () => clearInterval(interval);
+  }, [randomMessage]);
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // 오답 노트가 없을 때 랜덤 메시지 반환
   const getRandomMessage = () => {
-    const randomIndex = Math.floor(Math.random() * randomMessages.length);
-    return randomMessages[randomIndex];
+    return randomMessage;
   };
 
   // 코드와 질문을 보내고 데이터 수신
