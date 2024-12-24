@@ -1,32 +1,23 @@
 import { useState } from "react";
 import { useNotification } from "../hooks/notification";
 
-interface AlarmProps {
-  chatroom?: {
-    id: number;
-    receiver: string;
-    sender: string;
-    noteName: string;
-  };
-}
+type ChatRoom = {
+  id: number;
+  receiver: string;
+  sender: number;
+  noteName: string;
+};
 
-const Alarm: React.FC<AlarmProps> = ({ chatroom }) => {
+const Alarm = () => {
   const { notification, isLoading } = useNotification();
   const [show, setShow] = useState(false);
-
+  const [chatRoom, setChatRoom] = useState<ChatRoom[]>([]);
+  const [id, setId] = useState(0);
   const baseUrl = import.meta.env.VITE_BACK_URL;
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
-  const handleMove = (link: string) => {
-    if (chatroom) {
-      window.location.href = `/chatroom/${chatroom.id}`;
-    } else {
-      window.location.href = link;
-    }
-  };
 
   const getChatRoom = () => {
     fetch(`${baseUrl}/chat-room`, {
@@ -34,31 +25,60 @@ const Alarm: React.FC<AlarmProps> = ({ chatroom }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setChatRoom(data.data);
+        setId(data.myId);
       });
   };
 
-  const handleDelete = async (id: number) => {
-    try {
-      await fetch(`/api/notifications/${id}`, {
-        method: "DELETE",
-      });
-      // 삭제 후 알림 목록 갱신 로직 추가 필요
-    } catch (error) {
-      console.error("알림 삭제 실패:", error);
-    }
+  const handleMove = (link: string) => {
+    window.location.href = link;
+  };
+
+  const handleDelete = (id: number) => {
+    fetch(`${baseUrl}/notification/${id}`, {
+      method: "DELETE",
+    });
   };
 
   return (
     <div className="alarm" onClick={() => setShow(!show)}>
-      <img src="/images/Bell.png" alt="bell" style={{ width: "20px" }} />
+      <img
+        src="/images/Bell.png"
+        alt="bell"
+        style={{ width: "20px" }}
+        onClick={getChatRoom}
+      />
       <div
         className="alarm-list"
         style={{
           scale: `${show ? "1" : "0"}`,
         }}
-        onClick={getChatRoom}
       >
+        {chatRoom.map((item) => (
+          <>
+            {id === item.sender ? (
+              <div key={item.id} className="alarm-item">
+                <p>채팅방을 생성했습니다.</p>
+                <div className="alarm-btn-container">
+                  <button
+                    onClick={() => handleMove(`/mentchat/${item.id}`)}
+                    className="move-btn"
+                  >
+                    참가하기
+                  </button>
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className="delete-btn"
+                  >
+                    삭제
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <></>
+            )}
+          </>
+        ))}
         {notification?.map((item) => (
           <div key={item.id} className="alarm-item">
             <p>{item.message}</p>
