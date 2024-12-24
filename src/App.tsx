@@ -19,7 +19,7 @@ import FirstUser from "./pages/FirstUser";
 import Setting from "./pages/Settings";
 import HeadTitle from "./components/HeadTitle";
 import NavBar from "./components/Navbar";
-// import Alarm from "./components/Alarm";
+import Alarm from "./components/Alarm";
 
 // {테스트 페이지}
 import UserTest from "./test/UserTest";
@@ -35,7 +35,7 @@ function App() {
       <Router>
         <HeadTitle />
         <NavBar />
-        {/* <Alarm /> */}
+        <Alarm />
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />

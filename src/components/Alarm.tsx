@@ -1,88 +1,111 @@
-/* import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNotification } from "../hooks/notification";
 
 type ChatRoom = {
   id: number;
   receiver: string;
-  sender: string;
+  sender: number;
   noteName: string;
 };
 
-type DetailProps = {
-  chatroom: ChatRoom;
-  id: number;
-};
-
-const Alarm: React.FC<DetailProps> = () => {
-  const baseUrl = import.meta.env.VITE_BACK_URL;
-  // 채팅방들의 정보
+const Alarm = () => {
+  const { notification, isLoading } = useNotification();
+  const [show, setShow] = useState(false);
   const [chatRoom, setChatRoom] = useState<ChatRoom[]>([]);
-  // 유저 아이디
   const [id, setId] = useState(0);
-  // 알림 여부
-  const [alarm, setAlarm] = useState(false);
-  const navigate = useNavigate();
-  // 채팅방 보여주기 여부
-  const [showChatRooms, setShowChatRooms] = useState(false);
+  const baseUrl = import.meta.env.VITE_BACK_URL;
 
-  // 클릭했을 때 채팅방들 보여주기
-  const getChatRoom = async () => {
-    try {
-      const response = await fetch(`${baseUrl}/chat-room`, {
-        credentials: "include",
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const getChatRoom = () => {
+    fetch(`${baseUrl}/chat-room`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setChatRoom(data.data);
+        setId(data.myId);
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-
-      setChatRoom(data.data);
-      setId(data.myId);
-    } catch (error) {
-      console.error("Error fetching chat room:", error);
-    }
   };
 
-  const toggleChatRooms = () => {
-    setShowChatRooms(!showChatRooms);
+  const handleMove = (link: string) => {
+    window.location.href = link;
   };
 
-  // 채팅 오면 알람
+  const handleDelete = (id: number) => {
+    fetch(`${baseUrl}/notification/${id}`, {
+      method: "DELETE",
+    });
+  };
 
   return (
-    <div className="alarm">
-      {showChatRooms ? (
-        <>
-          {chatRoom.map((item) => (
-            <>
-              {item.sender === `${id}` ? (
-                <div style={{ backgroundColor: "gray", border: "1px solid" }}>
-                  <div>내가 보낸 알림</div>
-                  <div>item.id: {item.id}</div>
-                  <div>item.receiver: {item.receiver}</div>
-                  <div>item.sender: {item.sender}</div>
-                  <button onClick={joinChat}>채팅 참가</button>
+    <div className="alarm" onClick={() => setShow(!show)}>
+      <img
+        src="/images/Bell.png"
+        alt="bell"
+        style={{ width: "20px" }}
+        onClick={getChatRoom}
+      />
+      <div
+        className="alarm-list"
+        style={{
+          scale: `${show ? "1" : "0"}`,
+        }}
+      >
+        {chatRoom.map((item) => (
+          <>
+            {id === item.sender ? (
+              <div key={item.id} className="alarm-item">
+                <p>채팅방을 생성했습니다.</p>
+                <div className="alarm-btn-container">
+                  <button
+                    onClick={() => handleMove(`/mentchat/${item.id}`)}
+                    className="move-btn"
+                  >
+                    참가하기
+                  </button>
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className="delete-btn"
+                  >
+                    삭제
+                  </button>
                 </div>
-              ) : (
-                <div style={{ backgroundColor: "orange", border: "1px solid" }}>
-                  <div>받은 알람</div>
-                  <div>item.id: {item.id}</div>
-                  <div>item.receiver: {item.receiver}</div>
-                  <div>item.sender: {item.sender}</div>
-                  <button onClick={joinChat}>채팅 참가</button>
-                </div>
-              )}
-            </>
-          ))}
-        </>
-      ) : (
-        <></>
-      )}
+              </div>
+            ) : (
+              <></>
+            )}
+          </>
+        ))}
+        {notification?.map((item) => (
+          <div key={item.id} className="alarm-item">
+            <p>{item.message}</p>
+            <p>{new Date(item.timestamp).toLocaleString()}</p>
+
+            {/* <p>{item.userId}님이 채팅방에 참여했습니다.</p> */}
+            <div className="alarm-btn-container">
+              <button
+                onClick={() => handleMove(item.link)}
+                className="move-btn"
+              >
+                참가하기
+              </button>
+              <button
+                onClick={() => handleDelete(item.id)}
+                className="delete-btn"
+              >
+                삭제
+              </button>
+            </div>
+
+            <hr />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 export default Alarm;
- */

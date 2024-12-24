@@ -11,7 +11,7 @@ type Message = {
   room: string;
   message: string;
   sender: string;
-  senderId:number;
+  senderId: number;
 };
 
 function MenTChat() {
@@ -27,6 +27,7 @@ function MenTChat() {
   const baseUrl = import.meta.env.VITE_BACK_URL;
 
   useEffect(() => {
+    // 오답노트 불러오기
     const fetchNote = async () => {
       try {
         const response = await fetch(
@@ -43,7 +44,17 @@ function MenTChat() {
       }
     };
 
+    // 기존에 저장된 채팅 내역 불러오기
+    const fetchMessage = async () => {
+      const response = await fetch(`${baseUrl}/message/${room}`, {
+        credentials: "include",
+      });
+      const data = await response.json();
+      setMessages(data.data);
+    };
+
     fetchNote();
+    fetchMessage();
   }, [room]);
 
   const joinRoom = () => {
@@ -87,7 +98,12 @@ function MenTChat() {
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!socket) return;
-    socket.emit("message", { room, message, sender: user?.name, senderId:user?.id });
+    socket.emit("message", {
+      room,
+      message,
+      sender: user?.name,
+      senderId: user?.id,
+    });
     setMessage("");
   };
 
@@ -131,7 +147,7 @@ function MenTChat() {
         </div>
         <div className="mentor-chat-content-right">
           <div className="mentor-chat-header">
-            <h1 className="mentor-chat-header-title">현재 방: {room}</h1>
+            {/* <h1 className="mentor-chat-header-title">현재 방: {room}</h1> */}
             <button className="leave-button" onClick={handleLeaveRoom}>
               방 나가기
             </button>
