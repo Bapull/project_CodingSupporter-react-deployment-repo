@@ -5,6 +5,7 @@ import { RootState } from "../redux/store";
 
 import "../styles/feedback.css";
 import IncorrectNote from "../components/IncorrectNote";
+import Loading from "../components/Loading";
 
 interface NoteData {
   id: number;
@@ -39,6 +40,7 @@ const Feedback: React.FC = () => {
   const [mentors, setMentors] = useState([] as MentorData[]);
   const [showMentors, setShowMentors] = useState(false);
   const [randomMessage, setRandomMessage] = useState(randomMessages[0]);
+  const [submitLoading, setSubmitLoading] = useState(false);
 
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const navigate = useNavigate();
@@ -72,6 +74,7 @@ const Feedback: React.FC = () => {
 
   // 코드와 질문을 보내고 데이터 수신
   const handleSubmitQuestion = async () => {
+    setSubmitLoading(true);
     const formattedCode = `\`\`\`\n${code}\n\`\`\``;
     try {
       const response = await fetch(`${baseUrl}/incorrect-note/generate`, {
@@ -88,8 +91,7 @@ const Feedback: React.FC = () => {
       }
 
       const data = await response.json();
-      console.log(data);
-      setNoteData(data.data); // noteData를 설정할 때 data.data를 사용
+      setNoteData(data.data);
       setLanguage(data.data.language);
     } catch (error) {
       if (error instanceof Error) {
@@ -97,6 +99,8 @@ const Feedback: React.FC = () => {
       } else {
         alert("알 수 없는 오류가 발생했습니다.");
       }
+    } finally {
+      setSubmitLoading(false);
     }
   };
 
@@ -172,6 +176,7 @@ const Feedback: React.FC = () => {
 
   return (
     <div className="feedback">
+      {submitLoading && <Loading />}
       <div className="container">
         <div className="incorrect-note-section">
           {noteData ? (
