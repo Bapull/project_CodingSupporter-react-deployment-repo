@@ -163,9 +163,9 @@ const Folder: React.FC = () => {
           </ul>
         </div>
         <div className="folder-content">
-          <div className="folder-search-bar">
+          {/* <div className="folder-search-bar">
             <input type="text" placeholder="Search" />
-          </div>
+          </div> */}
           
           {/* 에러 타입 폴더들 (선택된 에러가 없을 때만 표시) */}
           {!selectedError && (
