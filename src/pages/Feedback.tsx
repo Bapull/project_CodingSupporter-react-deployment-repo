@@ -239,8 +239,15 @@ const Feedback: React.FC = () => {
                 value={question}
                 onChange={(e) => setQuestion(e.target.value)}
               ></textarea>
-              <button className="submit-button" onClick={handleSubmitQuestion}>
-                Submit
+              <button 
+                className="submit-button" 
+                onClick={noteData ? () => {
+                  setNoteData(null);
+                  setCode("");
+                  setQuestion("");
+                } : handleSubmitQuestion}
+              >
+                {noteData ? "New Question" : "Submit"}
               </button>
             </>
           )}
