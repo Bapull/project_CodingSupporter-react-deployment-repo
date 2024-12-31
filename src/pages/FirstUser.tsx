@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { updateUser } from "../redux/userSlice";
 import "../styles/firstUser.css";
-import styled from "styled-components";
 
 // 하고싶은 로직구현 -> 처음에 언어상태와 포지션 상태를 불러와서 이미 선택되어 있는 상태를 보여주고 그 상태를 변경할 수 있도록 구현
 // 역할 선택, 언어 선택
