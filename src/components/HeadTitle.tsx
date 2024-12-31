@@ -7,6 +7,11 @@ function HeadTitle() {
 
   // 경로에 따른 타이틀 반환
   const getTitle = (path: string) => {
+    // mentchat/숫자 형식 체크
+    if (/^\/mentchat\/\d+$/.test(path)) {
+      return "MentoChat";
+    }
+
     switch (path) {
       case "/home":
         return "Home";
@@ -31,6 +36,15 @@ function HeadTitle() {
 
   // 경로에 따른 원의 색상과 네온 효과 반환
   const getCircleStyle = (path: string) => {
+    // mentchat/숫자 형식 체크
+    if (/^\/mentchat\/\d+$/.test(path)) {
+      return {
+        borderColor: "#fffac3",
+        boxShadow:
+          "0 0 10px rgba(255, 234, 0, 0.8), 0 0 20px rgba(255, 234, 0, 0.6), 0 0 30px rgba(255, 234, 0, 0.4)",
+      };
+    }
+
     switch (path) {
       case "/home":
         return {
